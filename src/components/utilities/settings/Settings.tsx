@@ -1,12 +1,26 @@
+import { useState } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Label } from '@/components/ui/label'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
 import toast from 'react-hot-toast'
 
+type ThemePref = 'light' | 'dark' | 'system'
+
+function applyTheme(pref: ThemePref) {
+  const isDark = pref === 'dark' || (pref === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)
+  document.documentElement.classList.toggle('dark', isDark)
+}
+
 export function Settings() {
-  const [defaultTheme, setDefaultTheme] = useLocalStorage<'light' | 'dark'>('doda-settings-theme', 'light')
+  const [defaultTheme, setDefaultTheme] = useLocalStorage<ThemePref>('doda-theme', 'system')
   const [clipboardAuto, setClipboardAuto] = useLocalStorage('doda-settings-clipboard', true)
   const [showShortcuts, setShowShortcuts] = useLocalStorage('doda-settings-shortcuts', true)
+
+  const changeTheme = (val: ThemePref) => {
+    setDefaultTheme(val)
+    applyTheme(val)
+    toast.success('Theme updated')
+  }
 
   return (
     <div className="max-w-xl space-y-4">
@@ -17,16 +31,16 @@ export function Settings() {
           <div className="flex items-center justify-between">
             <div>
               <Label>Default Theme</Label>
-              <p className="text-xs text-muted-foreground">Theme applied on first visit</p>
+              <p className="text-xs text-muted-foreground">Applied on first visit and across tabs</p>
             </div>
             <select
               value={defaultTheme}
-              onChange={e => { setDefaultTheme(e.target.value as 'light' | 'dark'); toast.success('Theme preference saved') }}
+              onChange={e => changeTheme(e.target.value as ThemePref)}
               className="px-3 py-1.5 rounded-lg border bg-background text-sm"
             >
+              <option value="system">💻 System</option>
               <option value="light">☀️ Light</option>
               <option value="dark">🌙 Dark</option>
-              <option value="system">💻 System</option>
             </select>
           </div>
         </CardContent>
@@ -77,7 +91,7 @@ export function Settings() {
       <Card>
         <CardContent className="p-5 space-y-2">
           <h3 className="font-semibold text-sm">About</h3>
-          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 80 utilities across 7 groups</p>
+          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 80 utilities across 8 groups</p>
           <p className="text-xs text-muted-foreground">All data is stored locally in your browser. Nothing is sent to any server.</p>
         </CardContent>
       </Card>

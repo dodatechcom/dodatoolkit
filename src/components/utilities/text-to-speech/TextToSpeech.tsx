@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
@@ -13,12 +13,22 @@ export function TextToSpeech() {
   const [selectedVoice, setSelectedVoice] = useState('')
   const [rate, setRate] = useState(1)
   const [speaking, setSpeaking] = useState(false)
+  const [noVoice, setNoVoice] = useState(false)
+  const retries = useRef(0)
 
   const loadVoices = useCallback(() => {
     const v = speechSynthesis.getVoices()
     if (v.length) {
       setVoices(v)
-      if (!selectedVoice) setSelectedVoice(v[0].name)
+      setNoVoice(false)
+      if (!selectedVoice || !v.find(vv => vv.name === selectedVoice)) {
+        setSelectedVoice(v[0].name)
+      }
+    } else if (retries.current < 10) {
+      retries.current++
+      setTimeout(loadVoices, 300)
+    } else {
+      setNoVoice(true)
     }
   }, [selectedVoice])
 
@@ -64,11 +74,17 @@ export function TextToSpeech() {
         <Card className="bg-white/40 dark:bg-white/5 border-border/50">
           <CardContent className="p-4">
             <Label>Voice</Label>
-            <Select
-              value={selectedVoice}
-              onChange={e => setSelectedVoice(e.target.value)}
-              options={voices.map(v => ({ value: v.name, label: `${v.name} (${v.lang})` }))}
-            />
+            {noVoice ? (
+              <p className="text-xs text-muted-foreground mt-1">No voices available on this system/browser</p>
+            ) : voices.length === 0 ? (
+              <p className="text-xs text-muted-foreground mt-1">Loading voices...</p>
+            ) : (
+              <Select
+                value={selectedVoice}
+                onChange={e => setSelectedVoice(e.target.value)}
+                options={voices.map(v => ({ value: v.name, label: `${v.name} (${v.lang})` }))}
+              />
+            )}
           </CardContent>
         </Card>
         <Card className="bg-white/40 dark:bg-white/5 border-border/50">

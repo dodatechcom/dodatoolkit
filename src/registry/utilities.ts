@@ -44,6 +44,12 @@ export const utilityGroups: UtilityGroup[] = [
     emoji: '📌',
     gradient: 'from-violet-500 to-fuchsia-600',
   },
+  {
+    id: 'system',
+    name: 'System',
+    emoji: '⚙️',
+    gradient: 'from-slate-500 to-gray-600',
+  },
 ]
 
 export const utilities: UtilityDefinition[] = [
@@ -73,15 +79,6 @@ export const utilities: UtilityDefinition[] = [
     emoji: '📖',
     groupId: 'text',
     component: lazy(() => import('@/components/utilities/ebook-splitter')),
-  },
-  // Everyday
-  {
-    id: 'settings',
-    name: 'Settings',
-    description: 'App preferences: theme, clipboard, interface',
-    emoji: '⚙️',
-    groupId: 'everyday',
-    component: lazy(() => import('@/components/utilities/settings')),
   },
   // Code & Data
   {
@@ -686,6 +683,15 @@ export const utilities: UtilityDefinition[] = [
     emoji: '🔗',
     groupId: 'network',
     component: lazy(() => import('@/components/utilities/link-preview')),
+  },
+  // System
+  {
+    id: 'settings',
+    name: 'Settings',
+    description: 'App preferences: theme, clipboard, interface',
+    emoji: '⚙️',
+    groupId: 'system',
+    component: lazy(() => import('@/components/utilities/settings')),
   },
 ]
 

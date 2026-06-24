@@ -218,7 +218,7 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
                 <button onClick={() => setAboutOpen(false)}
                   className="absolute top-3 right-3 text-muted-foreground hover:text-foreground text-lg leading-none">&times;</button>
                 <p className="text-lg font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
-                <p className="text-sm text-muted-foreground">80 utilities across 7 groups.</p>
+                <p className="text-sm text-muted-foreground">80 utilities across 8 groups.</p>
                 <p className="text-sm text-muted-foreground">Built with ❤️ by <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com') || window.open('https://dodatech.com', '_blank')} className="text-primary hover:underline inline">DodaTech.com</button></p>
                 <p className="text-sm text-muted-foreground pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
               </motion.div>
