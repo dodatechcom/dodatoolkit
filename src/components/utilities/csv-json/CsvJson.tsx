@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -85,21 +86,29 @@ export function CsvJson() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">{mode === 'csv-to-json' ? 'CSV → JSON' : 'JSON → CSV'}</Badge>
-        <Button onClick={swap} variant="outline" size="sm">🔄 Swap</Button>
-        <Button onClick={convert} size="sm">⚡ Convert</Button>
-        {output && <Button onClick={copyOutput} variant="outline" size="sm">📋 Copy</Button>}
-      </div>
+      <Card className="bg-gradient-to-br from-blue-50 to-cyan-50 dark:from-blue-900/10 dark:to-cyan-900/10 border-blue-200 dark:border-blue-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">{mode === 'csv-to-json' ? 'CSV → JSON' : 'JSON → CSV'}</Badge>
+            <Button onClick={swap} variant="outline" size="sm">🔄 Swap</Button>
+            <Button onClick={convert} size="sm">⚡ Convert</Button>
+            {output && <Button onClick={copyOutput} variant="outline" size="sm">📋 Copy</Button>}
+          </div>
+        </CardContent>
+      </Card>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label>{mode === 'csv-to-json' ? 'CSV Input' : 'JSON Input'}</Label>
-          <Textarea value={input} onChange={e => { setInput(e.target.value); setError('') }} rows={12} className="font-mono text-sm" />
-        </div>
-        <div>
-          <Label>{mode === 'csv-to-json' ? 'JSON Output' : 'CSV Output'}</Label>
-          <Textarea value={output} readOnly rows={12} className="font-mono text-sm" />
-        </div>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>{mode === 'csv-to-json' ? 'CSV Input' : 'JSON Input'}</Label>
+            <Textarea value={input} onChange={e => { setInput(e.target.value); setError('') }} rows={12} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>{mode === 'csv-to-json' ? 'JSON Output' : 'CSV Output'}</Label>
+            <Textarea value={output} readOnly rows={12} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>

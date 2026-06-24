@@ -38,22 +38,30 @@ export function NotesPad() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">📝 Notes</Badge>
-        <span className="text-xs text-muted-foreground">{wordCount} words · {charCount} chars</span>
-        {lastSaved && <span className="text-xs text-muted-foreground">Saved at {lastSaved}</span>}
-        <div className="flex-1" />
-        <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>
-        <Button onClick={clear} variant="outline" size="sm" className="text-red-500 hover:text-red-600">🗑️ Clear</Button>
-      </div>
+      <Card className="bg-gradient-to-br from-yellow-50 to-amber-50 dark:from-yellow-900/10 dark:to-amber-900/10 border-yellow-200 dark:border-yellow-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">📝 Notes</Badge>
+            <span className="text-xs text-muted-foreground">{wordCount} words · {charCount} chars</span>
+            {lastSaved && <span className="text-xs text-muted-foreground">Saved at {lastSaved}</span>}
+            <div className="flex-1" />
+            <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>
+            <Button onClick={clear} variant="outline" size="sm" className="text-red-500 hover:text-red-600">🗑️ Clear</Button>
+          </div>
+        </CardContent>
+      </Card>
 
-      <Textarea
-        value={notes}
-        onChange={e => setNotes(e.target.value)}
-        rows={16}
-        className="font-mono text-sm"
-        placeholder="Start typing your notes here... They are auto-saved to your browser."
-      />
+      <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+        <CardContent className="p-4">
+          <Textarea
+            value={notes}
+            onChange={e => setNotes(e.target.value)}
+            rows={16}
+            className="font-mono text-sm"
+            placeholder="Start typing your notes here... They are auto-saved to your browser."
+          />
+        </CardContent>
+      </Card>
     </div>
   )
 }

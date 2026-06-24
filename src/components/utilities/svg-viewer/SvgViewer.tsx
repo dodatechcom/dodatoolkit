@@ -1,4 +1,5 @@
 import { useState, useMemo, useEffect, useRef } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -43,24 +44,32 @@ export function SvgViewer() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">SVG</Badge>
-        <Button onClick={download} size="sm">⬇️ Download</Button>
-        <Button onClick={copyCode} variant="outline" size="sm">📋 Copy Code</Button>
-      </div>
+      <Card className="bg-gradient-to-br from-violet-50 to-indigo-50 dark:from-violet-900/10 dark:to-indigo-900/10 border-violet-200 dark:border-violet-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">SVG</Badge>
+            <Button onClick={download} size="sm">⬇️ Download</Button>
+            <Button onClick={copyCode} variant="outline" size="sm">📋 Copy Code</Button>
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label>SVG Code</Label>
-          <Textarea value={code} onChange={e => { setCode(e.target.value); setError('') }} rows={12} className="font-mono text-sm" />
-          {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
-        </div>
-        <div>
-          <Label>Preview</Label>
-          <div className="rounded-lg border bg-white/40 dark:bg-white/5 flex items-center justify-center min-h-[300px] p-4" onError={() => setError('Invalid SVG')}>
-            <img src={svgUrl} alt="SVG preview" className="max-w-full max-h-[400px]" />
-          </div>
-        </div>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>SVG Code</Label>
+            <Textarea value={code} onChange={e => { setCode(e.target.value); setError('') }} rows={12} className="font-mono text-sm mt-1.5" />
+            {error && <p className="text-red-500 text-xs mt-1">{error}</p>}
+          </CardContent>
+        </Card>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>Preview</Label>
+            <div className="rounded-lg border bg-white/40 dark:bg-white/5 flex items-center justify-center min-h-[300px] p-4 mt-1.5" onError={() => setError('Invalid SVG')}>
+              <img src={svgUrl} alt="SVG preview" className="max-w-full max-h-[400px]" />
+            </div>
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

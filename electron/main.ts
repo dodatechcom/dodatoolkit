@@ -1,4 +1,4 @@
-import { app, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, BrowserWindow, ipcMain, dialog, shell } from 'electron'
 import path from 'path'
 import { fileURLToPath } from 'url'
 
@@ -69,4 +69,10 @@ ipcMain.handle('save-file', async (_event, options: { defaultName: string; filte
     return result.filePath
   }
   return null
+})
+
+ipcMain.handle('open-external', async (_event, url: string) => {
+  if (typeof url === 'string' && (url.startsWith('https://') || url.startsWith('http://'))) {
+    await shell.openExternal(url)
+  }
 })

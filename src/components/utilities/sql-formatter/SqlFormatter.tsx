@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -34,21 +35,29 @@ export function SqlFormatter() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">SQL</Badge>
-        <Button onClick={doFormat} size="sm">✨ Format</Button>
-        <Button onClick={minify} variant="outline" size="sm">📦 Minify</Button>
-        {output && <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>}
-      </div>
+      <Card className="bg-gradient-to-br from-orange-50 to-red-50 dark:from-orange-900/10 dark:to-red-900/10 border-orange-200 dark:border-orange-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">SQL</Badge>
+            <Button onClick={doFormat} size="sm">✨ Format</Button>
+            <Button onClick={minify} variant="outline" size="sm">📦 Minify</Button>
+            {output && <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>}
+          </div>
+        </CardContent>
+      </Card>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label>SQL Input</Label>
-          <Textarea value={input} onChange={e => { setInput(e.target.value); setError('') }} rows={12} className="font-mono text-sm" />
-        </div>
-        <div>
-          <Label>Formatted SQL</Label>
-          <Textarea value={output} readOnly rows={12} className="font-mono text-sm" />
-        </div>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>SQL Input</Label>
+            <Textarea value={input} onChange={e => { setInput(e.target.value); setError('') }} rows={12} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>Formatted SQL</Label>
+            <Textarea value={output} readOnly rows={12} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
       </div>
       {error && <p className="text-red-500 text-sm">{error}</p>}
     </div>

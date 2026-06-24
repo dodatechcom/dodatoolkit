@@ -42,24 +42,32 @@ export function TextCleaner() {
 
   return (
     <div className="space-y-4">
-      <div className="flex flex-wrap gap-2">
-        {actions.map(a => (
-          <Button key={a.id} onClick={() => apply(a.id)} size="sm" variant="outline">{a.emoji} {a.label}</Button>
-        ))}
-      </div>
+      <Card className="bg-gradient-to-br from-green-50 to-emerald-50 dark:from-green-900/10 dark:to-emerald-900/10 border-green-200 dark:border-green-800">
+        <CardContent className="p-4">
+          <div className="flex flex-wrap gap-2">
+            {actions.map(a => (
+              <Button key={a.id} onClick={() => apply(a.id)} size="sm" variant="outline">{a.emoji} {a.label}</Button>
+            ))}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <Label>Input</Label>
-          <Textarea value={input} onChange={e => setInput(e.target.value)} rows={10} className="font-mono text-sm" />
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <Label>Output</Label>
-            {output && <button onClick={copy} className="text-xs text-muted-foreground hover:text-foreground">📋 Copy</button>}
-          </div>
-          <Textarea value={output} readOnly rows={10} className="font-mono text-sm" />
-        </div>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>Input</Label>
+            <Textarea value={input} onChange={e => setInput(e.target.value)} rows={10} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <div className="flex items-center justify-between">
+              <Label>Output</Label>
+              {output && <button onClick={copy} className="text-xs text-muted-foreground hover:text-foreground">📋 Copy</button>}
+            </div>
+            <Textarea value={output} readOnly rows={10} className="font-mono text-sm mt-1.5" />
+          </CardContent>
+        </Card>
       </div>
     </div>
   )

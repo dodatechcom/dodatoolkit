@@ -1,4 +1,5 @@
 import { useState, useMemo, useRef } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -66,20 +67,29 @@ export function MorseCode() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">{mode === 'text-to-morse' ? 'Text → Morse' : 'Morse → Text'}</Badge>
-        <Button onClick={swap} variant="outline" size="sm">🔄 Swap</Button>
-        {mode === 'text-to-morse' && <Button onClick={play} variant="outline" size="sm">🔊 Play Morse</Button>}
-        <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>
-      </div>
-      <div>
-        <Label>{mode === 'text-to-morse' ? 'Text' : 'Morse Code'}</Label>
-        <Textarea value={input} onChange={e => setInput(e.target.value)} rows={6} className="font-mono text-sm" />
-      </div>
-      <div>
-        <Label>{mode === 'text-to-morse' ? 'Morse Code' : 'Text'}</Label>
-        <Textarea value={output} readOnly rows={6} className="font-mono text-sm" />
-      </div>
+      <Card className="bg-gradient-to-br from-amber-50 to-yellow-50 dark:from-amber-900/10 dark:to-yellow-900/10 border-amber-200 dark:border-amber-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">{mode === 'text-to-morse' ? 'Text → Morse' : 'Morse → Text'}</Badge>
+            <Button onClick={swap} variant="outline" size="sm">🔄 Swap</Button>
+            {mode === 'text-to-morse' && <Button onClick={play} variant="outline" size="sm">🔊 Play Morse</Button>}
+            <Button onClick={copy} variant="outline" size="sm">📋 Copy</Button>
+          </div>
+        </CardContent>
+      </Card>
+
+      <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+        <CardContent className="p-4">
+          <Label>{mode === 'text-to-morse' ? 'Text' : 'Morse Code'}</Label>
+          <Textarea value={input} onChange={e => setInput(e.target.value)} rows={6} className="font-mono text-sm mt-1.5" />
+        </CardContent>
+      </Card>
+      <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+        <CardContent className="p-4">
+          <Label>{mode === 'text-to-morse' ? 'Morse Code' : 'Text'}</Label>
+          <Textarea value={output} readOnly rows={6} className="font-mono text-sm mt-1.5" />
+        </CardContent>
+      </Card>
     </div>
   )
 }

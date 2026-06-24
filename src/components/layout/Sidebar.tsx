@@ -185,14 +185,14 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
 
       <div className="border-t border-border">
         <div className="flex border-b border-border">
-          <a href="https://docs.dodatech.com" target="_blank" rel="noopener noreferrer"
+          <button onClick={() => window.electronAPI?.openExternal('https://docs.dodatech.com') || window.open('https://docs.dodatech.com', '_blank')}
             className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors">
             🆘 Help
-          </a>
-          <a href="https://dodatech.com/donate/" target="_blank" rel="noopener noreferrer"
+          </button>
+          <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com/donate/') || window.open('https://dodatech.com/donate/', '_blank')}
             className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
             💝 Donate
-          </a>
+          </button>
           <button onClick={() => setAboutOpen(o => !o)}
             className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
             ℹ️ About
@@ -219,7 +219,7 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
                   className="absolute top-3 right-3 text-muted-foreground hover:text-foreground text-lg leading-none">&times;</button>
                 <p className="text-lg font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
                 <p className="text-sm text-muted-foreground">80 utilities across 7 groups.</p>
-                <p className="text-sm text-muted-foreground">Built with ❤️ by <a href="https://dodatech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DodaTech.com</a></p>
+                <p className="text-sm text-muted-foreground">Built with ❤️ by <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com') || window.open('https://dodatech.com', '_blank')} className="text-primary hover:underline inline">DodaTech.com</button></p>
                 <p className="text-sm text-muted-foreground pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
               </motion.div>
             </motion.div>

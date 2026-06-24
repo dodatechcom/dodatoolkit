@@ -11,6 +11,7 @@ declare global {
         filters: { name: string; extensions: string[] }[]
         data: string
       }) => Promise<string | null>
+      openExternal: (url: string) => Promise<void>
     }
   }
 }

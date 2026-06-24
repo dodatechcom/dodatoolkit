@@ -1,4 +1,5 @@
 import { useState, useCallback, useEffect } from 'react'
+import { Card, CardContent } from '@/components/ui/card'
 import { Textarea } from '@/components/ui/textarea'
 import { Label } from '@/components/ui/label'
 import { Button } from '@/components/ui/button'
@@ -47,33 +48,43 @@ export function TextToSpeech() {
 
   return (
     <div className="space-y-4">
-      <div className="flex items-center gap-3 flex-wrap">
-        <Badge variant="secondary">Text to Speech</Badge>
-        <Button onClick={speak} disabled={speaking || !text} size="sm">
-          {speaking ? '🔊 Speaking...' : '🔊 Speak'}
-        </Button>
-        {speaking && <Button onClick={stop} variant="outline" size="sm">⏹️ Stop</Button>}
-      </div>
+      <Card className="bg-gradient-to-br from-sky-50 to-blue-50 dark:from-sky-900/10 dark:to-blue-900/10 border-sky-200 dark:border-sky-800">
+        <CardContent className="p-4">
+          <div className="flex items-center gap-3 flex-wrap">
+            <Badge variant="secondary">Text to Speech</Badge>
+            <Button onClick={speak} disabled={speaking || !text} size="sm">
+              {speaking ? '🔊 Speaking...' : '🔊 Speak'}
+            </Button>
+            {speaking && <Button onClick={stop} variant="outline" size="sm">⏹️ Stop</Button>}
+          </div>
+        </CardContent>
+      </Card>
 
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-        <div>
-          <Label>Voice</Label>
-          <Select
-            value={selectedVoice}
-            onChange={e => setSelectedVoice(e.target.value)}
-            options={voices.map(v => ({ value: v.name, label: `${v.name} (${v.lang})` }))}
-          />
-        </div>
-        <div>
-          <Label>Rate: {rate}x</Label>
-          <input type="range" min={0.5} max={2} step={0.1} value={rate} onChange={e => setRate(parseFloat(e.target.value))} className="w-full" aria-label="Speech rate" />
-        </div>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>Voice</Label>
+            <Select
+              value={selectedVoice}
+              onChange={e => setSelectedVoice(e.target.value)}
+              options={voices.map(v => ({ value: v.name, label: `${v.name} (${v.lang})` }))}
+            />
+          </CardContent>
+        </Card>
+        <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+          <CardContent className="p-4">
+            <Label>Rate: {rate}x</Label>
+            <input type="range" min={0.5} max={2} step={0.1} value={rate} onChange={e => setRate(parseFloat(e.target.value))} className="w-full mt-1.5" aria-label="Speech rate" />
+          </CardContent>
+        </Card>
       </div>
 
-      <div>
-        <Label>Text</Label>
-        <Textarea value={text} onChange={e => setText(e.target.value)} rows={8} />
-      </div>
+      <Card className="bg-white/40 dark:bg-white/5 border-border/50">
+        <CardContent className="p-4">
+          <Label>Text</Label>
+          <Textarea value={text} onChange={e => setText(e.target.value)} rows={8} className="mt-1.5" />
+        </CardContent>
+      </Card>
     </div>
   )
 }

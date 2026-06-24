@@ -57,7 +57,7 @@ export function AsciiArt() {
     return lines.join('\n')
   }, [text, font])
 
-  const copy = () => { navigator.clipboard.writeText(text).catch(() => {}); toast.success('Copied') }
+  const copy = () => { navigator.clipboard.writeText(art).catch(() => {}); toast.success('Copied') }
 
   return (
     <div className="space-y-4 max-w-lg mx-auto">
