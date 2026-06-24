@@ -12,6 +12,7 @@ permissions:
 jobs:
   build:
     strategy:
+      fail-fast: false
       matrix:
         os:
           - ubuntu-latest
@@ -35,9 +36,10 @@ jobs:
       - run: npm run build:electron
 
       - name: Package
-        run: npx electron-builder --publish=never
+        run: npx electron-builder --publish=never ${{ matrix.os == 'macos-latest' && '--x64' || '' }}
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          USE_HARD_LINKS: false
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
