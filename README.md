@@ -1,196 +1,89 @@
-# 🧰 Doda Toolkit
+# Doda Toolkit
 
-> Your all-in-one utility toolbox — beautiful, fast, and extensible.
+**80 utilities in one desktop app.** A cross-platform toolkit for developers, designers, and everyday power users — every tool is self-contained, runs entirely in your browser, and respects your privacy.
 
-Doda Toolkit brings dozens of small utilities under one roof with a gorgeous multi-colored UI. No more hunting for 100 different websites or tools — everything is one click away.
+Built with Electron + React + TypeScript + Tailwind CSS.
 
-## 🛠️ Tech Stack
+## Features
 
-| Layer | Choice |
-|-------|--------|
-| Desktop | **Electron** |
-| UI | **React 18 + TypeScript** |
-| Build | **Vite** |
-| Styling | **Tailwind CSS** + Glassmorphism |
-| Animations | **Framer Motion** |
-| UI Components | **shadcn/ui** (Radix primitives) |
-| Notifications | **react-hot-toast** |
-| Registry | Custom extensibility pattern |
+### Code & Data (22 tools)
+`🛠️` QR Code Generator · JSON Formatter · UUID Generator · Base64 Encoder/Decoder · Hash Generator · Number Base Converter · Regex Tester · Fake Data Generator · YAML ↔ JSON Converter · SVG Viewer · JSON → TypeScript · CSV ↔ JSON · HTTP Status Codes · SQL Formatter · Calculator · Text to Slug · Text Cleaner · CSS Unit Converter · Unicode Inspector · Roman Numeral Converter · Cron Explainer · HTML/CSS/JS Playground
 
-## ✨ Features
+### Text Tools (8 tools)
+`🔤` Case Converter · Character Counter · Lorem Ipsum Generator · Text Diff · Markdown Editor · Text to Speech · Morse Code Converter · Ebook Chapter Splitter
 
-### 🖥️ Desktop App
-- Built with **Electron + React + TypeScript**
-- Cross-platform (Windows, macOS, Linux)
-- Custom title bar with native window controls
-- Dark/Light mode toggle
+### Converters (5 tools)
+`↔️` Temperature Converter · Data Size Converter · Currency Converter · Time Calculator · EMI / Loan Calculator
 
-### 🎨 Beautiful UI
-- Multi-colored gradient themes per utility group
-- Glassmorphism cards with backdrop blur
-- Smooth animations powered by **Framer Motion**
-- Native emoji icons for every utility
-- Responsive sidebar with collapsible groups
-- Cmd/Ctrl+K command palette for quick search
-- Favorites system — pin your most-used tools
+### Security (7 tools)
+`🔒` Password Generator · JWT Decoder · Hash File Checker · QR Code Scanner · Password Strength Checker · Text Encrypt/Decrypt · RSA Key Generator · TOTP Generator · Metadata Cleaner
 
-### 📦 Utilities
+### Network (3 tools)
+`🌐` URL Encoder/Decoder · IP Info · Link Preview
 
-#### 🛠️ Code & Data
-| Utility | Description |
-|---------|-------------|
-| 📱 QR Code Generator | Generate QR codes from text/URLs, download as PNG |
-| 📋 JSON Formatter | Pretty-print, validate, and minify JSON |
-| 🔢 UUID Generator | Generate v4/v7 UUIDs in bulk (1-100) |
-| 🔐 Base64 Encoder/Decoder | Encode and decode Base64 strings instantly |
-| 🔑 Hash Generator | Generate MD5, SHA-1, SHA-256 hashes |
-| 🔢 Number Base Converter | Convert between decimal, hex, binary, octal |
-| 🧪 Regex Tester | Test regular expressions with live matching and explanation |
-| 🎭 Fake Data Generator | Generate fake names, emails, phones, addresses for testing |
-| 🔄 YAML ↔ JSON Converter | Convert between YAML and JSON formats |
-| 🧩 SVG Viewer | View and download SVG code with live preview |
-| 🔄 JSON → TypeScript | Convert JSON to TypeScript interfaces |
-| 📊 CSV ↔ JSON | Convert CSV to JSON and back |
-| ⚡ HTTP Status Codes | Searchable reference of HTTP status codes |
-| 🧮 SQL Formatter | Format and minify SQL queries |
-| 🧮 Calculator | Basic calculator with history log |
-| 🔤 Text to Slug | Convert text to URL-friendly slugs |
-| 🧹 Text Cleaner | Strip HTML, collapse spaces, trim, remove non-ASCII |
-| 📏 CSS Unit Converter | Convert px to rem, em, %, pt, cm, mm, in, pc, ch |
-| 🔡 Unicode Inspector | Inspect Unicode code points and UTF-8 bytes |
-| 🧪 Cron Explainer | Translate cron expressions into English |
-| 🏛️ Roman Numeral Converter | Convert numbers to and from Roman numerals |
+### Design (11 tools)
+`🎨` Color Picker · Image to Text (OCR) · Color Palette from Image · Color Contrast Checker · CSS Gradient Generator · Box Shadow Generator · Image Compressor · Tailwind Color Reference · Image to Base64 · Placeholder Images · Color Converter · Image Format Converter
 
-#### 🔤 Text Tools
-| Utility | Description |
-|---------|-------------|
-| ↔️ Case Converter | Convert between camelCase, snake_case, kebab-case, PascalCase, Title Case |
-| 📊 Character Counter | Count characters, words, lines, sentences, paragraphs |
-| 📝 Lorem Ipsum Generator | Generate placeholder text with custom paragraphs |
-| 📋 Text Diff | Compare two texts side by side |
-| 🔤 HTML Entity Encoder | Encode and decode HTML entities |
-| 📝 Markdown Editor | Write markdown with live HTML preview |
-| 🔊 Text to Speech | Read text aloud with voice selection |
-| 💬 Morse Code Converter | Convert text to and from Morse code with audio |
+### Everyday Tools (23 tools)
+`📌` Age Calculator · Date Calculator · Random Number Generator · List Randomizer · Percentage Calculator · Number to Words · Text Repeater · Emoji Picker · World Clock · Notes Pad · Typing Speed Test · Pomodoro Timer · Monthly Calendar · File Info · ASCII Art Generator · Decision Maker · Stopwatch · To-Do List · Dice Roller · Biorhythm · Random Quote Generator · Countdown Timer · Tip Calculator · Zodiac Compatibility · Periodic Table · Sorting Visualizer · Card Shuffler · Clipboard Manager
 
-#### ↔️ Converters
-| Utility | Description |
-|---------|-------------|
-| 📐 Unit Converter | Convert between length, weight, temperature, data size units |
-| ⏰ Timestamp Converter | Convert between Unix timestamps and human-readable dates |
+### System (1 tool)
+`⚙️` Settings — theme (light/dark/system), clipboard auto-track, toolbar hints
 
-#### 🔒 Security
-| Utility | Description |
-|---------|-------------|
-| 🔒 Password Generator | Generate strong passwords with custom options (length, chars, symbols) |
-| 🔐 JWT Decoder | Decode JWT tokens and inspect header, payload, signature |
-| 🔍 Hash File Checker | Compute MD5, SHA-1, SHA-256 checksums of files |
-| 📸 QR Code Scanner | Decode QR codes from images |
-| 🔍 Password Strength Checker | Check password strength with time-to-crack estimate |
-| 🔐 Text Encrypt / Decrypt | Encrypt and decrypt text with AES-GCM + passphrase |
-| 🔑 RSA Key Generator | Generate RSA-2048 public/private key pairs |
+## UI Features
 
-#### 🌐 Network
-| Utility | Description |
-|---------|-------------|
-| 🌐 URL Encoder/Decoder | Encode and decode URLs and URL components |
-| 🌐 IP & Browser Info | See your IP, location, browser, OS, screen info |
+- **Glassmorphism design** with gradient accents, smooth animations
+- **Dark / Light / System theme** — persisted to localStorage
+- **Search palette** (`⌘K` / `Ctrl+K`) with keyboard navigation and group badges
+- **Sidebar** with collapsible groups, favorites, recents, auto-expand, collapse/expand all
+- **Welcome screen** with quick-access grid and recently used tools
+- **Keyboard shortcut reference** (press `?`)
+- **Responsive grid** layout, frameless window on desktop
+- **All data processed locally** — nothing sent to any server
 
-#### 📌 Everyday Tools
-| Utility | Description |
-|---------|-------------|
-| 🎂 Age Calculator | Calculate exact age with zodiac sign and birthstone |
-| 📅 Date Calculator | Days between dates, add or subtract days from a date |
-| 🎲 Random Number Generator | Generate random numbers within a range |
-| 🔀 List Randomizer | Shuffle lists and pick random items |
-| 💯 Percentage Calculator | Find what % of X is Y, add/subtract percentage |
-| 🔤 Number to Words | Convert numbers to English words and currency format |
-| 🔁 Text Repeater | Repeat text multiple times with custom separator |
-| 📋 Emoji Picker | Browse and copy emojis by category |
-| 🌍 World Clock | View current time across multiple time zones |
-| 📝 Notes Pad | Quick notes with auto-save to localStorage |
-| ⌨️ Typing Speed Test | Measure your typing speed and accuracy |
-| ⏱️ Pomodoro Timer | 25/5 focus timer with cycle tracking |
-| 📅 Monthly Calendar | View any month and jump to today |
-| 🗂️ File Info | Drop a file to see name, size, type, dimensions |
-| 🧪 ASCII Art Generator | Turn text into ASCII art |
-| 🎯 Decision Maker | Spin through options and pick one randomly |
-| ⏱️ Stopwatch | Lap timer with millisecond precision |
-| 📋 To-Do List | Simple task list with localStorage persistence |
-| 🎲 Dice Roller | Roll d4, d6, d8, d10, d12, d20 with animation |
-| 🧬 Biorhythm | Physical, emotional, intellectual cycles with chart |
-| 📞 Random Quote Generator | Get inspired with random quotes |
-| 🗓️ Countdown Timer | Set target date and see live countdown |
+## Getting Started
 
-#### 🎨 Design
-| Utility | Description |
-|---------|-------------|
-| 🎨 Color Picker | Pick colors and get HEX, RGB, HSL values |
-| 🖼️ Image to Text (OCR) | Extract text from images using OCR |
-| 🎨 Color Palette from Image | Upload an image to extract its dominant colors |
-| 🎯 Color Contrast Checker | Check WCAG contrast ratios between two colors |
-| 🖌️ CSS Gradient Generator | Generate linear and radial gradients visually |
-| 🎨 Box Shadow Generator | Create and preview CSS box shadows |
-| 🗜️ Image Compressor | Compress images and download the result |
-| 🎨 Tailwind Color Reference | Browse every Tailwind CSS color with hex values |
-| 🖼️ Image to Base64 | Convert images to Base64 data URIs |
-| 📦 Placeholder Images | Generate SVG placeholder images at any size |
-| 🔄 Color Converter | Convert between HEX, RGB, HSL, CMYK |
+```bash
+npm install
+npm run dev          # Browser at localhost:5173
+npm run electron:dev # Full desktop app (requires Electron)
+npm run build        # Production build
+```
 
-### 🏗️ Architecture
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Desktop shell | Electron (frameless, titleBarStyle: hidden) |
+| UI framework | React 18 + TypeScript |
+| Bundler | Vite |
+| Styling | Tailwind CSS (glassmorphism, dark mode) |
+| Animations | Framer Motion |
+| Icons | Native emoji (zero bundle size) |
+| Code splitting | React.lazy — each utility is its own chunk |
+
+## Architecture
 
 ```
 src/
-├── components/
-│   ├── ui/           # Reusable UI primitives (shadcn/ui style)
-│   ├── layout/       # Shell, Sidebar, Header
-│   └── utilities/    # One folder per utility (self-contained)
-├── registry/
-│   └── utilities.ts  # Single source of truth for all utilities
-├── types/
-│   └── utility.ts    # Shared type definitions
-├── hooks/            # Custom React hooks
-└── lib/              # Utility functions
+  registry/utilities.ts   — single source of truth (groups + utilities)
+  components/
+    layout/               — Shell, Sidebar, Header, Welcome screen
+    ui/                   — shadcn-style primitives (Card, Button, Input, etc.)
+    utilities/<name>/     — each utility self-contained (Component.tsx + index.ts)
+  hooks/                  — useTheme, useLocalStorage
+  types/                  — TypeScript definitions
+electron/
+  main.ts                 — Electron main process (IPC, frameless window)
+  preload.ts              — contextBridge (minimize, maximize, close, openExternal)
 ```
 
-### 🔌 Extensibility
+Adding a new utility: create a folder in `src/components/utilities/<name>/` with `Component.tsx` + `index.ts`, then add one entry to `src/registry/utilities.ts`.
 
-Adding a new utility takes 2 steps:
-1. Create `src/components/utilities/my-thing/MyThing.tsx`
-2. Add one entry to `src/registry/utilities.ts`
+## Privacy
 
-No routing changes, no sidebar edits, no import chains.
+All processing happens client-side. No data is sent to any server. LocalStorage is used only for preferences (theme, recents, favorites, notes).
 
-### 🚀 Getting Started
+## License
 
-```bash
-# Install dependencies
-npm install
-
-# Run in browser (faster dev)
-npm run dev
-
-# Run as Electron desktop app
-npm run electron:dev
-
-# Build for production
-npm run build
-```
-
-### 🧪 Testing
-
-Each utility includes a corresponding test file. Run tests with:
-
-```bash
-npm test
-```
-
-### 📦 Distribution
-
-Doda Toolkit is packaged using **electron-builder** for all platforms:
-
-| Platform | Format |
-|----------|--------|
-| Windows | NSIS installer (.exe) |
-| macOS | DMG (.dmg) |
-| Linux | AppImage (.AppImage) |
+Built with ❤️ by [DodaTech.com](https://dodatech.com)

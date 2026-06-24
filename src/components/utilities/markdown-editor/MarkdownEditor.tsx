@@ -33,7 +33,7 @@ function greet(name) {
 |----------|----------|
 | Cell 1   | Cell 2   |
 
-[Link](https://doda.toolkit) and ![Image](https://placehold.co/400x100)
+[Link](https://dodatech.com) and ![Image](https://placehold.co/400x100)
 `
 
 export function MarkdownEditor() {

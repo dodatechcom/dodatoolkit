@@ -8,7 +8,7 @@ import { Select } from '@/components/ui/select'
 import toast from 'react-hot-toast'
 
 export function QRCodeGenerator() {
-  const [text, setText] = useState('https://doda-toolkit.app')
+  const [text, setText] = useState('https://dodatech.com')
   const [fgColor, setFgColor] = useState('#6366f1')
   const [bgColor, setBgColor] = useState('#ffffff')
   const [size, setSize] = useState('256')
