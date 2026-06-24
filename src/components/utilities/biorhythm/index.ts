@@ -1,0 +1,1 @@
+export { Biorhythm as default } from './Biorhythm'

@@ -1,0 +1,1 @@
+export { MimeLookup as default } from './MimeLookup'

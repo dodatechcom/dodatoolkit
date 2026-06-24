@@ -1,0 +1,1 @@
+export { TipCalc as default } from './TipCalc'

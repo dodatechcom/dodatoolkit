@@ -1,0 +1,1 @@
+export { TextToSlug as default } from './TextToSlug'

@@ -1,0 +1,1 @@
+export { TailwindColors as default } from './TailwindColors'

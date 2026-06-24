@@ -1,0 +1,120 @@
+import { useState } from 'react'
+import { motion, AnimatePresence } from 'framer-motion'
+import { cn } from '@/lib/utils'
+import { utilityGroups, getUtilitiesByGroup } from '@/registry/utilities'
+import { useLocalStorage } from '@/hooks/useLocalStorage'
+import { Separator } from '@/components/ui/separator'
+import type { UtilityDefinition } from '@/types/utility'
+
+interface SidebarProps {
+  activeUtilityId: string | null
+  onSelectUtility: (id: string) => void
+}
+
+export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
+  const [collapsedGroups, setCollapsedGroups] = useLocalStorage<string[]>('doda-collapsed-groups', [])
+  const [favorites, setFavorites] = useLocalStorage<string[]>('doda-favorites', [])
+
+  function toggleGroup(groupId: string) {
+    setCollapsedGroups((prev) =>
+      prev.includes(groupId) ? prev.filter((g) => g !== groupId) : [...prev, groupId],
+    )
+  }
+
+  function toggleFavorite(e: React.MouseEvent, utilityId: string) {
+    e.stopPropagation()
+    setFavorites((prev) =>
+      prev.includes(utilityId) ? prev.filter((id) => id !== utilityId) : [...prev, utilityId],
+    )
+  }
+
+  return (
+    <aside aria-label="Utility navigation" className="w-64 h-full flex flex-col bg-card/50 border-r border-border overflow-hidden">
+      <div className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
+        {utilityGroups.map((group) => {
+          const groupUtilities = getUtilitiesByGroup(group.id)
+          const isCollapsed = collapsedGroups.includes(group.id)
+          return (
+            <div key={group.id}>
+              <button
+                onClick={() => toggleGroup(group.id)}
+                aria-expanded={!isCollapsed}
+                className="flex items-center gap-2 w-full px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:bg-accent transition-all"
+              >
+                <span className={`inline-block w-2 h-2 rounded-full bg-gradient-to-br ${group.gradient}`} />
+                <span className="flex-1 text-left">{group.emoji} {group.name}</span>
+                <motion.span
+                  animate={{ rotate: isCollapsed ? 0 : 180 }}
+                  transition={{ duration: 0.2 }}
+                  className="text-xs"
+                >
+                  ▾
+                </motion.span>
+              </button>
+
+              <AnimatePresence initial={false}>
+                {!isCollapsed && (
+                  <motion.div
+                    initial={{ height: 0, opacity: 0 }}
+                    animate={{ height: 'auto', opacity: 1 }}
+                    exit={{ height: 0, opacity: 0 }}
+                    transition={{ duration: 0.2, ease: 'easeInOut' }}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-0.5 pl-2 py-1">
+                      {groupUtilities.map((utility) => {
+                        const isActive = utility.id === activeUtilityId
+                        const isFavorite = favorites.includes(utility.id)
+                        return (
+                          <button
+                            key={utility.id}
+                            onClick={() => onSelectUtility(utility.id)}
+                            className={cn(
+                              'relative flex items-center gap-2.5 w-full px-3 py-2 rounded-xl text-sm transition-all duration-200 group',
+                              isActive
+                                ? 'text-primary font-medium'
+                                : 'text-muted-foreground hover:text-foreground hover:bg-accent/50',
+                            )}
+                          >
+                            {isActive && (
+                              <motion.div
+                                layoutId="active-utility"
+                                className={cn(
+                                  'absolute inset-0 rounded-xl bg-gradient-to-br opacity-10',
+                                  group.gradient,
+                                )}
+                                transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+                              />
+                            )}
+                            <span className="relative text-base">{utility.emoji}</span>
+                            <span className="relative flex-1 text-left truncate">{utility.name}</span>
+                            <button
+                              onClick={(e) => toggleFavorite(e, utility.id)}
+                              aria-label={isFavorite ? 'Remove from favorites' : 'Add to favorites'}
+                              className={cn(
+                                'relative opacity-0 group-hover:opacity-100 transition-opacity text-xs',
+                                isFavorite && 'opacity-100',
+                              )}
+                            >
+                              {isFavorite ? '⭐' : '☆'}
+                            </button>
+                          </button>
+                        )
+                      })}
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          )
+        })}
+      </div>
+
+      <div className="p-3 border-t border-border">
+        <p className="text-[10px] text-muted-foreground text-center">
+          🧰 Doda Toolkit v1.0
+        </p>
+      </div>
+    </aside>
+  )
+}

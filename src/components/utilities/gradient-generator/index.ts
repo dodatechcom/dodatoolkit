@@ -1,0 +1,1 @@
+export { GradientGenerator as default } from './GradientGenerator'

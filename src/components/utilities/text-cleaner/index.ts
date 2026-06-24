@@ -1,0 +1,1 @@
+export { TextCleaner as default } from './TextCleaner'

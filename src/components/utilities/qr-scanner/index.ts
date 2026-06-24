@@ -1,0 +1,1 @@
+export { QrScanner as default } from './QrScanner'

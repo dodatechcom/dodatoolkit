@@ -1,0 +1,1 @@
+export { ImageToBase64 as default } from './ImageToBase64'

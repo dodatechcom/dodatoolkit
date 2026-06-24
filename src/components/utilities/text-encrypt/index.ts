@@ -1,0 +1,1 @@
+export { TextEncrypt as default } from './TextEncrypt'

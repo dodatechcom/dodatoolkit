@@ -1,0 +1,1 @@
+export { PeriodicTable as default } from './PeriodicTable'

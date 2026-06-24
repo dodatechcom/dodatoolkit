@@ -1,0 +1,1 @@
+export { Gitmoji as default } from './Gitmoji'

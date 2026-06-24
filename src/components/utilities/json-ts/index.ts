@@ -1,0 +1,1 @@
+export { JsonTs as default } from './JsonTs'

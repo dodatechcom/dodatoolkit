@@ -1,0 +1,1 @@
+export { MorseCode as default } from './MorseCode'

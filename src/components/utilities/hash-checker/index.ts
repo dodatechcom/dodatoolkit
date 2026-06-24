@@ -1,0 +1,1 @@
+export { HashChecker as default } from './HashChecker'

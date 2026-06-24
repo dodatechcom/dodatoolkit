@@ -1,0 +1,1 @@
+export { SortingViz as default } from './SortingViz'

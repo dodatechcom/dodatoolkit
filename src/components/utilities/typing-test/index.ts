@@ -1,0 +1,1 @@
+export { TypingTest as default } from './TypingTest'

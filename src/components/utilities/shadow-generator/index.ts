@@ -1,0 +1,1 @@
+export { ShadowGenerator as default } from './ShadowGenerator'

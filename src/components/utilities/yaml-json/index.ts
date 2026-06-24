@@ -1,0 +1,1 @@
+export { YamlJson as default } from './YamlJson'

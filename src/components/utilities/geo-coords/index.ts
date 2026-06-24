@@ -1,0 +1,1 @@
+export { GeoCoords as default } from './GeoCoords'

@@ -1,0 +1,1 @@
+export { NotesPad as default } from './NotesPad'

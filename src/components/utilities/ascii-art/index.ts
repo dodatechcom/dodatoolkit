@@ -1,0 +1,1 @@
+export { AsciiArt as default } from './AsciiArt'

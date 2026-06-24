@@ -1,0 +1,1 @@
+export { FileInfo as default } from './FileInfo'

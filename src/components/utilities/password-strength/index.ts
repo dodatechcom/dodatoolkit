@@ -1,0 +1,1 @@
+export { PasswordStrength as default } from './PasswordStrength'

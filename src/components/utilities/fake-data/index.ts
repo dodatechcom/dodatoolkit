@@ -1,0 +1,1 @@
+export { FakeData as default } from './FakeData'

@@ -1,0 +1,1 @@
+export { Totp as default } from './Totp'
