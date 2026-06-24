@@ -49,7 +49,9 @@ export function CurrencyConverter() {
   useEffect(() => { fetchRates() }, [fetchRates])
 
   const numAmount = parseFloat(amount) || 0
-  const rate = from === to ? 1 : usdRates[to] / usdRates[from]
+  const fromRate = from === 'USD' ? 1 : (usdRates[from] ?? 1)
+  const toRate = to === 'USD' ? 1 : (usdRates[to] ?? 1)
+  const rate = from === to ? 1 : toRate / fromRate
   const result = numAmount * rate
 
   const swap = () => { setFrom(to); setTo(from) }
