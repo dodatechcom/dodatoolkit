@@ -3,14 +3,27 @@ import { Card, CardContent } from '@/components/ui/card'
 import toast from 'react-hot-toast'
 
 export function BrowserInfo() {
-  const [ip, setIp] = useState('Loading...')
+  const [ip, setIp] = useState('Looking up...')
   const [location, setLocation] = useState('')
 
   useEffect(() => {
-    fetch('https://ip-api.com/json/')
+    const controller = new AbortController()
+    const timeout = setTimeout(() => controller.abort(), 8000)
+
+    fetch('https://ip-api.com/json/', { signal: controller.signal })
       .then(r => r.json())
-      .then(d => { setIp(d.query); setLocation(`${d.city}, ${d.country}`) })
+      .then(d => {
+        if (d && d.query) {
+          setIp(d.query)
+          setLocation(d.city && d.country ? `${d.city}, ${d.country}` : 'Unknown')
+        } else {
+          setIp('Unavailable'); setLocation('Unavailable')
+        }
+      })
       .catch(() => { setIp('Unavailable'); setLocation('Unavailable') })
+      .finally(() => clearTimeout(timeout))
+
+    return () => { clearTimeout(timeout); controller.abort() }
   }, [])
 
   const info = [
