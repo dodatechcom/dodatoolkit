@@ -77,7 +77,7 @@ export function Settings() {
       <Card>
         <CardContent className="p-5 space-y-2">
           <h3 className="font-semibold text-sm">About</h3>
-          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 75 utilities across 7 groups</p>
+          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 80 utilities across 7 groups</p>
           <p className="text-xs text-muted-foreground">All data is stored locally in your browser. Nothing is sent to any server.</p>
         </CardContent>
       </Card>

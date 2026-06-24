@@ -208,7 +208,7 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
             >
               <div className="p-3 space-y-1.5 text-[10px] text-muted-foreground bg-card/30">
                 <p className="font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
-                <p>75 utilities across 7 groups.</p>
+                <p>80 utilities across 7 groups.</p>
                 <p>Built with ❤️ by <a href="https://dodatech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DodaTech.com</a></p>
                 <p className="pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
               </div>
