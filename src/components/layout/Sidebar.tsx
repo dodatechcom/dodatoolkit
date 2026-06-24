@@ -1,9 +1,8 @@
-import { useState } from 'react'
+import { useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
-import { utilityGroups, getUtilitiesByGroup } from '@/registry/utilities'
+import { utilityGroups, getUtilitiesByGroup, getUtilityById, getGroupById } from '@/registry/utilities'
 import { useLocalStorage } from '@/hooks/useLocalStorage'
-import { Separator } from '@/components/ui/separator'
 import type { UtilityDefinition } from '@/types/utility'
 
 interface SidebarProps {
@@ -14,6 +13,18 @@ interface SidebarProps {
 export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
   const [collapsedGroups, setCollapsedGroups] = useLocalStorage<string[]>('doda-collapsed-groups', [])
   const [favorites, setFavorites] = useLocalStorage<string[]>('doda-favorites', [])
+
+  useEffect(() => {
+    if (!activeUtilityId) return
+    const util = getUtilityById(activeUtilityId)
+    if (!util) return
+    setCollapsedGroups((prev) => {
+      const next = new Set(prev)
+      next.delete(util.groupId)
+      utilityGroups.forEach(g => { if (g.id !== util.groupId) next.add(g.id) })
+      return Array.from(next)
+    })
+  }, [activeUtilityId])
 
   function toggleGroup(groupId: string) {
     setCollapsedGroups((prev) =>
@@ -28,9 +39,31 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
     )
   }
 
+  const favUtilities = favorites.map(id => getUtilityById(id)).filter(Boolean) as UtilityDefinition[]
+
   return (
     <aside aria-label="Utility navigation" className="w-64 h-full flex flex-col bg-card/50 border-r border-border overflow-hidden">
       <div className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
+        {favUtilities.length > 0 && (
+          <div className="mb-2 pb-2 border-b border-border">
+            <p className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">⭐ Favorites</p>
+            <div className="space-y-0.5">
+              {favUtilities.map(u => {
+                const g = getGroupById(u.groupId)
+                return (
+                  <button key={u.id} onClick={() => onSelectUtility(u.id)}
+                    className="flex items-center gap-2.5 w-full px-3 py-1.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+                  >
+                    <span className="text-base">{u.emoji}</span>
+                    <span className="flex-1 text-left truncate">{u.name}</span>
+                    <span className="text-[10px] text-muted-foreground">{g?.emoji}</span>
+                  </button>
+                )
+              })}
+            </div>
+          </div>
+        )}
+
         {utilityGroups.map((group) => {
           const groupUtilities = getUtilitiesByGroup(group.id)
           const isCollapsed = collapsedGroups.includes(group.id)
@@ -41,8 +74,9 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
                 aria-expanded={!isCollapsed}
                 className="flex items-center gap-2 w-full px-3 py-2 rounded-xl text-xs font-semibold uppercase tracking-wider text-muted-foreground hover:text-foreground hover:bg-accent transition-all"
               >
-                <span className={`inline-block w-2 h-2 rounded-full bg-gradient-to-br ${group.gradient}`} />
-                <span className="flex-1 text-left">{group.emoji} {group.name}</span>
+                <span className="text-sm">{group.emoji}</span>
+                <span className="flex-1 text-left">{group.name}</span>
+                <span className="text-[10px] font-normal opacity-60">{groupUtilities.length}</span>
                 <motion.span
                   animate={{ rotate: isCollapsed ? 0 : 180 }}
                   transition={{ duration: 0.2 }}

@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { useSearch } from '@/hooks/useSearch'
+import { getGroupById } from '@/registry/utilities'
 import type { UtilityDefinition } from '@/types/utility'
 
 interface HeaderProps {
@@ -182,9 +183,12 @@ export function Header({ activeUtilityId, onSelectUtility, theme, toggleTheme }:
                       )}
                     >
                       <span className="text-lg">{utility.emoji}</span>
-                      <div className="text-left">
-                        <p className="font-medium">{utility.name}</p>
-                        <p className="text-xs text-muted-foreground">{utility.description}</p>
+                      <div className="flex-1 text-left min-w-0">
+                        <div className="flex items-center gap-2">
+                          <p className="font-medium truncate">{utility.name}</p>
+                          <span className="text-[10px] text-muted-foreground shrink-0">{getGroupById(utility.groupId)?.emoji}</span>
+                        </div>
+                        <p className="text-xs text-muted-foreground truncate">{utility.description}</p>
                       </div>
                     </button>
                   ))
