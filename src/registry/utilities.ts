@@ -635,6 +635,49 @@ export const utilities: UtilityDefinition[] = [
     groupId: 'everyday',
     component: lazy(() => import('@/components/utilities/countdown')),
   },
+  // Design
+  {
+    id: 'image-converter',
+    name: 'Image Format Converter',
+    description: 'Convert images between PNG, JPEG, WebP, BMP',
+    emoji: '🖼️',
+    groupId: 'design',
+    component: lazy(() => import('@/components/utilities/image-converter')),
+  },
+  // Code & Data
+  {
+    id: 'playground',
+    name: 'HTML/CSS/JS Playground',
+    description: 'Live preview editor for HTML, CSS, and JavaScript',
+    emoji: '🧪',
+    groupId: 'code-data',
+    component: lazy(() => import('@/components/utilities/playground')),
+  },
+  // Converters
+  {
+    id: 'currency-converter',
+    name: 'Currency Converter',
+    description: 'Convert between 10 major currencies with offline rates',
+    emoji: '💰',
+    groupId: 'converters',
+    component: lazy(() => import('@/components/utilities/currency-converter')),
+  },
+  {
+    id: 'time-calculator',
+    name: 'Time Calculator',
+    description: 'Duration between times, add/subtract hours and minutes',
+    emoji: '⏰',
+    groupId: 'converters',
+    component: lazy(() => import('@/components/utilities/time-calculator')),
+  },
+  {
+    id: 'emi-calculator',
+    name: 'EMI / Loan Calculator',
+    description: 'Calculate monthly EMI, total interest, and payment',
+    emoji: '🧮',
+    groupId: 'converters',
+    component: lazy(() => import('@/components/utilities/emi-calculator')),
+  },
 ]
 
 export function getUtilitiesByGroup(groupId: string): UtilityDefinition[] {

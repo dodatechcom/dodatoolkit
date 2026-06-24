@@ -38,7 +38,7 @@ function addRecent(id: string) {
   } catch {}
 }
 
-const quickAccessIds = ['qr-code', 'json-formatter', 'uuid-generator', 'base64-encoder', 'hash-generator', 'case-converter', 'unit-converter', 'color-converter', 'clipboard-manager', 'password-generator', 'text-cleaner', 'emoji-picker']
+const quickAccessIds = ['qr-code', 'json-formatter', 'uuid-generator', 'base64-encoder', 'hash-generator', 'case-converter', 'unit-converter', 'image-converter', 'clipboard-manager', 'currency-converter', 'playground', 'text-cleaner']
 
 function WelcomeScreen({ onSelect }: { onSelect: (id: string) => void }) {
   const recents = getRecents()
