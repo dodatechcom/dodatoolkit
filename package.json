@@ -4,6 +4,9 @@
   "private": true,
   "version": "1.0.0",
   "description": "🧰 Doda Toolkit - Your all-in-one utility toolbox",
+  "author": "DodaTech <hello@dodatech.com>",
+  "license": "MIT",
+  "repository": "github:dodatechcom/dodatoolkit",
   "main": "dist-electron/main.js",
   "scripts": {
     "dev": "vite --open",
