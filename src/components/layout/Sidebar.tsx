@@ -201,17 +201,27 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
         <AnimatePresence>
           {aboutOpen && (
             <motion.div
-              initial={{ height: 0, opacity: 0 }}
-              animate={{ height: 'auto', opacity: 1 }}
-              exit={{ height: 0, opacity: 0 }}
-              className="overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+              onClick={() => setAboutOpen(false)}
             >
-              <div className="p-3 space-y-1.5 text-[10px] text-muted-foreground bg-card/30">
-                <p className="font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
-                <p>80 utilities across 7 groups.</p>
-                <p>Built with ❤️ by <a href="https://dodatech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DodaTech.com</a></p>
-                <p className="pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
-              </div>
+              <motion.div
+                initial={{ scale: 0.85, opacity: 0, y: 20 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.85, opacity: 0, y: 20 }}
+                transition={{ type: 'spring', stiffness: 300, damping: 25 }}
+                onClick={e => e.stopPropagation()}
+                className="relative w-full max-w-sm mx-4 p-6 rounded-2xl bg-card border border-border shadow-2xl space-y-2.5"
+              >
+                <button onClick={() => setAboutOpen(false)}
+                  className="absolute top-3 right-3 text-muted-foreground hover:text-foreground text-lg leading-none">&times;</button>
+                <p className="text-lg font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
+                <p className="text-sm text-muted-foreground">80 utilities across 7 groups.</p>
+                <p className="text-sm text-muted-foreground">Built with ❤️ by <a href="https://dodatech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DodaTech.com</a></p>
+                <p className="text-sm text-muted-foreground pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
