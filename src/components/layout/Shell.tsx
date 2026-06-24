@@ -1,10 +1,11 @@
-import { Suspense } from 'react'
+import { Suspense, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Header } from './Header'
 import { Sidebar } from './Sidebar'
 import { useTheme } from '@/hooks/useTheme'
-import { getUtilityById, getGroupById } from '@/registry/utilities'
+import { getUtilityById, getGroupById, utilities } from '@/registry/utilities'
 import { cn } from '@/lib/utils'
+import type { UtilityDefinition } from '@/types/utility'
 
 interface ShellProps {
   activeUtilityId: string | null
@@ -22,22 +23,66 @@ function LoadingFallback() {
   )
 }
 
-function WelcomeScreen() {
+function getRecents(): UtilityDefinition[] {
+  try {
+    const ids = JSON.parse(localStorage.getItem('doda-recents') || '[]') as string[]
+    return ids.map(id => getUtilityById(id)).filter(Boolean) as UtilityDefinition[]
+  } catch { return [] }
+}
+
+function addRecent(id: string) {
+  try {
+    const ids = JSON.parse(localStorage.getItem('doda-recents') || '[]') as string[]
+    const next = [id, ...ids.filter(i => i !== id)].slice(0, 6)
+    localStorage.setItem('doda-recents', JSON.stringify(next))
+  } catch {}
+}
+
+const quickAccessIds = ['qr-code', 'json-formatter', 'uuid-generator', 'base64-encoder', 'hash-generator', 'case-converter', 'unit-converter', 'color-converter', 'clipboard-manager', 'password-generator', 'text-cleaner', 'emoji-picker']
+
+function WelcomeScreen({ onSelect }: { onSelect: (id: string) => void }) {
+  const recents = getRecents()
+
   return (
-    <div className="flex flex-col items-center justify-center h-full gap-6 px-8">
-      <span className="text-7xl animate-bounce">🧰</span>
+    <div className="flex flex-col items-center justify-center h-full gap-6 px-8 py-8">
+      <span className="text-6xl animate-bounce">🧰</span>
       <h1 className="text-3xl font-bold bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
         Welcome to Doda Toolkit
       </h1>
       <p className="text-muted-foreground text-center max-w-md">
         Choose a utility from the sidebar or press <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-xs">⌘K</kbd> to search.
       </p>
-      <div className="grid grid-cols-2 gap-3 mt-4">
-        {['📱 QR Code', '📋 JSON', '🔢 UUID', '🔐 Base64', '🔑 Hash', '↔️ Case', '📐 Units', '🎨 Color'].map((item) => (
-          <div key={item} className="glass rounded-2xl px-4 py-3 text-sm text-center text-muted-foreground">
-            {item}
+
+      {recents.length > 0 && (
+        <div className="w-full max-w-lg">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Recently Used</p>
+          <div className="flex flex-wrap gap-2">
+            {recents.map(u => (
+              <button key={u.id} onClick={() => onSelect(u.id)}
+                className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-sm bg-white/40 dark:bg-white/5 border hover:bg-accent transition-colors">
+                <span>{u.emoji}</span>
+                <span>{u.name}</span>
+              </button>
+            ))}
           </div>
-        ))}
+        </div>
+      )}
+
+      <div className="w-full max-w-lg">
+        <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-2">Quick Access</p>
+        <div className="grid grid-cols-3 sm:grid-cols-4 gap-2">
+          {quickAccessIds.map(id => {
+            const u = getUtilityById(id)
+            if (!u) return null
+            return (
+              <button key={u.id} onClick={() => onSelect(u.id)}
+                className="glass rounded-2xl px-3 py-3 text-sm text-center text-muted-foreground hover:text-foreground hover:scale-105 transition-all">
+                <div className="text-xl mb-1">{u.emoji}</div>
+                <div className="text-[11px] leading-tight">{u.name}</div>
+              </button>
+            )
+          })}
+        </div>
       </div>
     </div>
   )
@@ -48,6 +93,10 @@ export function Shell({ activeUtilityId, onSelectUtility }: ShellProps) {
   const utility = activeUtilityId ? getUtilityById(activeUtilityId) : null
   const group = utility ? getGroupById(utility.groupId) : null
   const UtilityComponent = utility?.component
+
+  useEffect(() => {
+    if (activeUtilityId) addRecent(activeUtilityId)
+  }, [activeUtilityId])
 
   return (
     <div className="h-screen flex flex-col bg-background">
@@ -98,7 +147,7 @@ export function Shell({ activeUtilityId, onSelectUtility }: ShellProps) {
                 exit={{ opacity: 0 }}
                 className="h-full"
               >
-                <WelcomeScreen />
+                <WelcomeScreen onSelect={onSelectUtility} />
               </motion.div>
             )}
           </AnimatePresence>

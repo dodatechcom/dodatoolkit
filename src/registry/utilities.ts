@@ -74,6 +74,15 @@ export const utilities: UtilityDefinition[] = [
     groupId: 'text',
     component: lazy(() => import('@/components/utilities/ebook-splitter')),
   },
+  // Everyday
+  {
+    id: 'settings',
+    name: 'Settings',
+    description: 'App preferences: theme, clipboard, interface',
+    emoji: '⚙️',
+    groupId: 'everyday',
+    component: lazy(() => import('@/components/utilities/settings')),
+  },
   // Code & Data
   {
     id: 'qr-code',

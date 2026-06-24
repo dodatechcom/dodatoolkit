@@ -69,6 +69,7 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
                           <button
                             key={utility.id}
                             onClick={() => onSelectUtility(utility.id)}
+                            title={`${utility.name} (${utility.emoji})`}
                             className={cn(
                               'relative flex items-center gap-2.5 w-full px-3 py-2 rounded-xl text-sm transition-all duration-200 group',
                               isActive
