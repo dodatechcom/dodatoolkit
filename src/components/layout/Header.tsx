@@ -16,6 +16,7 @@ export function Header({ activeUtilityId, onSelectUtility, theme, toggleTheme }:
   const [searchOpen, setSearchOpen] = useState(false)
   const [searchQuery, setSearchQuery] = useState('')
   const [activeIndex, setActiveIndex] = useState(0)
+  const [shortcutsOpen, setShortcutsOpen] = useState(false)
   const searchResults = useSearch(searchQuery)
   const searchRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLInputElement>(null)
@@ -45,6 +46,13 @@ export function Header({ activeUtilityId, onSelectUtility, theme, toggleTheme }:
       if (searchOpen && e.key === 'Enter' && searchResults.length > 0) {
         e.preventDefault()
         handleSelect(searchResults[activeIndex])
+      }
+      if (!searchOpen && e.key === '?' && !e.metaKey && !e.ctrlKey && !(e.target instanceof HTMLInputElement || e.target instanceof HTMLTextAreaElement)) {
+        e.preventDefault()
+        setShortcutsOpen(o => !o)
+      }
+      if (e.key === 'Escape') {
+        setShortcutsOpen(false)
       }
     }
     window.addEventListener('keydown', handleKeyDown)
@@ -193,6 +201,38 @@ export function Header({ activeUtilityId, onSelectUtility, theme, toggleTheme }:
                     </button>
                   ))
                 )}
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      <AnimatePresence>
+        {shortcutsOpen && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            className="absolute top-full right-4 mt-1 z-50"
+          >
+            <div className="glass-strong rounded-2xl shadow-2xl border border-white/20 dark:border-white/10 overflow-hidden w-72">
+              <div className="px-4 py-3 border-b border-border flex items-center justify-between">
+                <span className="text-sm font-semibold">⌨️ Keyboard Shortcuts</span>
+                <button onClick={() => setShortcutsOpen(false)} className="text-xs text-muted-foreground hover:text-foreground">✕</button>
+              </div>
+              <div className="p-3 space-y-2">
+                {[
+                  { keys: '⌘K', desc: 'Open search palette' },
+                  { keys: 'Esc', desc: 'Close search / modal' },
+                  { keys: '↑↓', desc: 'Navigate search results' },
+                  { keys: 'Enter', desc: 'Select search result' },
+                  { keys: '?', desc: 'Toggle this shortcut reference' },
+                ].map(s => (
+                  <div key={s.keys} className="flex items-center justify-between text-sm">
+                    <kbd className="px-1.5 py-0.5 rounded bg-muted font-mono text-[10px]">{s.keys}</kbd>
+                    <span className="text-xs text-muted-foreground">{s.desc}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </motion.div>

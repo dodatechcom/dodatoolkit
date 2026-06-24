@@ -42,6 +42,20 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
 
   const favUtilities = favorites.map(id => getUtilityById(id)).filter(Boolean) as UtilityDefinition[]
 
+  const recentIds: string[] = JSON.parse(localStorage.getItem('doda-recents') || '[]')
+  const recentUtilities = recentIds.map(id => getUtilityById(id)).filter(Boolean) as UtilityDefinition[]
+  const recentExcludingFav = recentUtilities.filter(u => !favorites.includes(u.id)).slice(0, 5)
+
+  const allCollapsed = utilityGroups.every(g => collapsedGroups.includes(g.id))
+
+  function toggleAllGroups() {
+    if (allCollapsed) {
+      setCollapsedGroups([])
+    } else {
+      setCollapsedGroups(utilityGroups.map(g => g.id))
+    }
+  }
+
   return (
     <aside aria-label="Utility navigation" className="w-64 h-full flex flex-col bg-card/50 border-r border-border overflow-hidden">
       <div className="flex-1 overflow-y-auto py-3 px-2 space-y-1">
@@ -64,6 +78,29 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
             </div>
           </div>
         )}
+
+        {recentExcludingFav.length > 0 && (
+          <div className="mb-2 pb-2 border-b border-border">
+            <p className="px-3 py-1 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">🕐 Recent</p>
+            <div className="space-y-0.5">
+              {recentExcludingFav.map(u => (
+                <button key={u.id} onClick={() => onSelectUtility(u.id)}
+                  className="flex items-center gap-2.5 w-full px-3 py-1.5 rounded-xl text-sm text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-all"
+                >
+                  <span className="text-base">{u.emoji}</span>
+                  <span className="flex-1 text-left truncate">{u.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        <div className="flex items-center justify-between px-3 py-1">
+          <span className="text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">Groups</span>
+          <button onClick={toggleAllGroups} className="text-[10px] text-muted-foreground hover:text-foreground transition-colors" title={allCollapsed ? 'Expand all' : 'Collapse all'}>
+            {allCollapsed ? '▸ Expand all' : '▾ Collapse all'}
+          </button>
+        </div>
 
         {utilityGroups.map((group) => {
           const groupUtilities = getUtilitiesByGroup(group.id)
