@@ -32,11 +32,14 @@ jobs:
 
       - run: npm ci
 
+      - run: npx electron-builder install-app-deps
+        continue-on-error: true
+
       - run: npm run build
       - run: npm run build:electron
 
       - name: Package
-        run: npx electron-builder --publish=never ${{ matrix.os == 'macos-latest' && '--x64' || '' }}
+        run: npx electron-builder --publish=never
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           USE_HARD_LINKS: false
