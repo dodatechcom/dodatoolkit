@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { cn } from '@/lib/utils'
 import { utilityGroups, getUtilitiesByGroup, getUtilityById, getGroupById } from '@/registry/utilities'
@@ -13,6 +13,7 @@ interface SidebarProps {
 export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
   const [collapsedGroups, setCollapsedGroups] = useLocalStorage<string[]>('doda-collapsed-groups', [])
   const [favorites, setFavorites] = useLocalStorage<string[]>('doda-favorites', [])
+  const [aboutOpen, setAboutOpen] = useState(false)
 
   useEffect(() => {
     if (!activeUtilityId) return
@@ -145,10 +146,38 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
         })}
       </div>
 
-      <div className="p-3 border-t border-border">
-        <p className="text-[10px] text-muted-foreground text-center">
-          🧰 Doda Toolkit v1.0
-        </p>
+      <div className="border-t border-border">
+        <div className="flex border-b border-border">
+          <a href="https://docs.dodatech.com" target="_blank" rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors">
+            🆘 Help
+          </a>
+          <a href="https://dodatech.com/donate/" target="_blank" rel="noopener noreferrer"
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
+            💝 Donate
+          </a>
+          <button onClick={() => setAboutOpen(o => !o)}
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
+            ℹ️ About
+          </button>
+        </div>
+        <AnimatePresence>
+          {aboutOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="overflow-hidden"
+            >
+              <div className="p-3 space-y-1.5 text-[10px] text-muted-foreground bg-card/30">
+                <p className="font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
+                <p>75 utilities across 7 groups.</p>
+                <p>Built with ❤️ by <a href="https://dodatech.com" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">DodaTech.com</a></p>
+                <p className="pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </div>
     </aside>
   )
