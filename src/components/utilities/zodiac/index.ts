@@ -1,1 +1,0 @@
-export { Zodiac as default } from './Zodiac'

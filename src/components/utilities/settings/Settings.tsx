@@ -89,10 +89,27 @@ export function Settings() {
       </Card>
 
       <Card>
-        <CardContent className="p-5 space-y-2">
-          <h3 className="font-semibold text-sm">About</h3>
-          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 80 utilities across 8 groups</p>
+        <CardContent className="p-5 space-y-3">
+          <div className="flex items-center justify-between">
+            <h3 className="font-semibold text-sm">About & Updates</h3>
+            <span className="text-xs px-2 py-0.5 rounded-full bg-primary/10 text-primary font-mono font-medium">v1.0.0</span>
+          </div>
+          <p className="text-xs text-muted-foreground">Doda Toolkit v1.0 — 87 utilities across 8 groups.</p>
           <p className="text-xs text-muted-foreground">All data is stored locally in your browser. Nothing is sent to any server.</p>
+          <div className="pt-1 flex gap-2">
+            <button
+              onClick={() => window.electronAPI?.openExternal('https://dodatech.com/software/dodatoolkit/#download') || window.open('https://dodatech.com/software/dodatoolkit/#download', '_blank')}
+              className="px-3 py-1.5 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:opacity-90 transition-opacity flex items-center gap-1.5"
+            >
+              🔄 Download Latest Version
+            </button>
+            <button
+              onClick={() => window.electronAPI?.openExternal('https://dodatech.com/docs/dodatoolkit/') || window.open('https://dodatech.com/docs/dodatoolkit/', '_blank')}
+              className="px-3 py-1.5 rounded-xl border text-xs font-medium hover:bg-accent transition-colors flex items-center gap-1.5"
+            >
+              🆘 Documentation
+            </button>
+          </div>
         </CardContent>
       </Card>
     </div>

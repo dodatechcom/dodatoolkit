@@ -1,1 +1,0 @@
-export { RandomQuote as default } from './RandomQuote'

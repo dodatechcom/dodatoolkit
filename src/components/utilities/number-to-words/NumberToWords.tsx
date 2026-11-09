@@ -8,7 +8,7 @@ const ONES = ['zero', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'ei
   'ten', 'eleven', 'twelve', 'thirteen', 'fourteen', 'fifteen', 'sixteen', 'seventeen', 'eighteen', 'nineteen']
 const TENS = ['', '', 'twenty', 'thirty', 'forty', 'fifty', 'sixty', 'seventy', 'eighty', 'ninety']
 
-function convertHundreds(n: number): string {
+export function convertHundreds(n: number): string {
   const parts: string[] = []
   if (n >= 100) {
     parts.push(ONES[Math.floor(n / 100)] + ' hundred')
@@ -24,7 +24,7 @@ function convertHundreds(n: number): string {
   return parts.join(' ') || 'zero'
 }
 
-function numberToWords(num: number): string {
+export function numberToWords(num: number): string {
   if (num === 0) return 'zero'
   if (num < 0) return 'minus ' + numberToWords(-num)
 

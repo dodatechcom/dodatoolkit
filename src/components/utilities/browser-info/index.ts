@@ -1,1 +1,0 @@
-export { BrowserInfo as default } from './BrowserInfo'

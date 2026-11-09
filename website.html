@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="index, follow" />
+  <title>Doda Toolkit — DodaTech</title>
+  <meta name="description" content="80 cross-platform utilities in one desktop app — codes, converters, security, design, text tools, and everyday utilities. All processed locally with zero server dependency." />
+  <link rel="canonical" href="https://dodatech.com/software/dodatoolkit/" itemprop="url" />
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  <link rel="icon" href="/icon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dodatech.com/software/dodatoolkit/" />
+  <meta property="og:title" content="Doda Toolkit — DodaTech" />
+  <meta property="og:description" content="80 cross-platform utilities in one desktop app — codes, converters, security, design, text tools, and everyday utilities. All processed locally with zero server dependency." />
+  <meta property="og:image" content="https://dodatech.com/doda-browser-logo.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Doda Toolkit — DodaTech" />
+  <meta name="twitter:description" content="80 cross-platform utilities in one desktop app — codes, converters, security, design, text tools, and everyday utilities. All processed locally with zero server dependency." />
+  <meta name="twitter:image" content="https://dodatech.com/doda-browser-logo.png" />
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
+    .feat-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+    .feat-card:hover { transform: translateY(-3px); }
+  </style>
+  <script data-goatcounter="https://dodatech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+  <button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <style>
+    #back-to-top {
+      position: fixed; bottom: 32px; right: 32px; z-index: 50;
+      width: 44px; height: 44px; border-radius: 12px; border: none;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      color: #fff; cursor: pointer; box-shadow: 0 4px 16px rgba(99,102,241,.35);
+      opacity: 0; visibility: hidden; transform: translateY(12px);
+      transition: all .25s ease;
+    }
+    #back-to-top.visible { opacity: 1; visibility: visible; transform: translateY(0); }
+    #back-to-top:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(99,102,241,.45); }
+    #back-to-top svg { width: 22px; height: 22px; }
+  </style>
+
+  <script>
+    window.addEventListener('scroll',function(){ document.getElementById('back-to-top').classList.toggle('visible',window.scrollY>300) });
+  </script>
+</head>
+<body class="min-h-screen bg-slate-50">
+
+  <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-sm border-b border-slate-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-16">
+        <a href="/" class="flex items-center gap-2">
+          <div class="relative">
+            <div class="w-10 h-10 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div class="absolute -bottom-1 -right-1 w-4 h-4 bg-amber-400 rounded-full border-2 border-white"></div>
+          </div>
+          <span class="text-xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent">DodaTech</span>
+        </a>
+
+        <div class="hidden md:flex items-center gap-1">
+          <a href="/" class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50">Home</a>
+          <div class="relative group">
+            <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1">
+              Software
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-1 w-48 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="/software/dodabrowser" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600 rounded-t-xl">Doda Browser</a>
+              <a href="/software/dodamediaplayer" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-rose-600">Doda Media Player</a>
+              <a href="/software/dodazip" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600">DodaZIP</a>
+              <a href="/software/dodatoolkit" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600 rounded-b-xl">Doda Toolkit</a>
+            </div>
+          </div>
+          <div class="relative group">
+            <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50 flex items-center gap-1">
+              Extensions
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="absolute top-full left-0 mt-1 w-52 bg-white rounded-xl shadow-xl border border-slate-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+              <a href="/extensions/firefox" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600 rounded-t-xl">Firefox Extensions</a>
+              <a href="/extensions/chrome" class="block px-4 py-2.5 text-sm text-slate-700 hover:bg-slate-50 hover:text-indigo-600 rounded-b-xl">Chrome Add-ons</a>
+            </div>
+          </div>
+          <a href="https://docs.dodatech.com" class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50">Docs</a>
+          <a href="/contact" class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50">Contact Us</a>
+          <a href="/about" class="px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 text-slate-600 hover:text-slate-900 hover:bg-slate-50">About Us</a>
+        </div>
+
+        <div class="flex items-center gap-3">
+          <a href="/donate" class="hidden md:inline-block px-4 py-2 rounded-lg text-sm font-semibold border-2 border-emerald-500 text-emerald-600 hover:bg-emerald-50 transition-all duration-200">Donate</a>
+          <button onclick="document.getElementById('mobile-menu').classList.toggle('hidden');document.getElementById('menu-icon').classList.toggle('hidden');document.getElementById('close-icon').classList.toggle('hidden')" class="md:hidden p-2 rounded-lg hover:bg-slate-100 transition-colors" aria-label="Toggle menu">
+            <svg id="menu-icon" class="w-6 h-6 text-slate-600" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+            <svg id="close-icon" class="w-6 h-6 text-slate-600 hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 px-4 py-4 space-y-2">
+      <a href="/" class="block w-full text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors font-medium">Home</a>
+      <div class="space-y-1">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="flex items-center justify-between w-full text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 font-medium transition-colors">
+          Software <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="hidden pl-4 space-y-1">
+          <a href="/software/dodabrowser" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">Doda Browser</a>
+          <a href="/software/dodamediaplayer" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">Doda Media Player</a>
+          <a href="/software/dodazip" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">DodaZIP</a>
+          <a href="/software/dodatoolkit" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">Doda Toolkit</a>
+        </div>
+      </div>
+      <div class="space-y-1">
+        <button onclick="this.nextElementSibling.classList.toggle('hidden')" class="flex items-center justify-between w-full text-left px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 font-medium transition-colors">
+          Extensions <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="hidden pl-4 space-y-1">
+          <a href="/extensions/firefox" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">Firefox Extensions</a>
+          <a href="/extensions/chrome" class="block px-4 py-2.5 rounded-lg text-sm text-slate-500 hover:bg-slate-50 transition-colors">Chrome Add-ons</a>
+        </div>
+      </div>
+      <a href="https://docs.dodatech.com" class="block px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors font-medium">Docs</a>
+      <a href="/contact" class="block px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors font-medium">Contact Us</a>
+      <a href="/about" class="block px-4 py-3 rounded-lg text-slate-600 hover:bg-slate-50 transition-colors font-medium">About Us</a>
+      <a href="/donate" class="block px-4 py-3 rounded-lg text-emerald-600 hover:bg-emerald-50 font-medium transition-colors">Donate</a>
+    </div>
+  </nav>
+
+  <main>
+
+    <section class="relative pt-28 pb-16 lg:pt-36 lg:pb-24 overflow-hidden">
+      <div class="absolute inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute -top-40 -right-40 w-96 h-96 bg-gradient-to-br from-indigo-100 via-purple-100 to-pink-100 rounded-full blur-3xl opacity-40"></div>
+        <div class="absolute -bottom-40 -left-40 w-96 h-96 bg-gradient-to-tr from-cyan-100 via-indigo-100 to-purple-100 rounded-full blur-3xl opacity-30"></div>
+      </div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-8 items-center">
+          <div class="text-center lg:text-left">
+            <div class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200 rounded-full px-4 py-2 mb-6">
+              <span class="flex h-2 w-2 relative">
+                <span class="animate-ping absolute inline-flex h-2 w-2 rounded-full bg-indigo-400 opacity-75"></span>
+                <span class="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              </span>
+              <span class="text-sm font-medium text-indigo-700">Now available — v1.0</span>
+            </div>
+
+            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold text-slate-900 leading-tight mb-4">
+              Doda
+              <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Toolkit</span>
+            </h1>
+            <p class="text-xl sm:text-2xl font-semibold text-slate-700 mb-3">80 tools. One app. Zero servers.</p>
+            <p class="text-lg text-slate-600 mb-8 max-w-xl mx-auto lg:mx-0">
+              A cross-platform desktop app packed with codes, converters, security tools, text utilities, design helpers, and everyday calculators — all processed locally in your browser with complete privacy.
+            </p>
+
+            <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-12">
+              <a href="#download" class="inline-flex items-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-xl shadow-indigo-200 rounded-xl px-8 py-4 text-lg font-semibold group transition-all duration-200">
+                <svg class="mr-2 w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                Download
+                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+              <a href="#tools" class="inline-flex items-center border-2 border-slate-200 hover:border-slate-300 text-slate-700 rounded-xl px-8 py-4 text-lg font-semibold group transition-all duration-200">
+                View All Tools
+                <svg class="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+              </a>
+            </div>
+
+            <div class="grid grid-cols-3 gap-6 lg:gap-8 max-w-lg mx-auto lg:mx-0">
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold bg-gradient-to-r from-indigo-500 to-purple-500 bg-clip-text text-transparent">80</div>
+                <div class="text-sm text-slate-500">Utilities</div>
+              </div>
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">8</div>
+                <div class="text-sm text-slate-500">Categories</div>
+              </div>
+              <div class="text-center lg:text-left">
+                <div class="text-2xl font-bold bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">3</div>
+                <div class="text-sm text-slate-500">Platforms</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="relative flex items-center justify-center">
+            <div class="absolute inset-0 overflow-hidden">
+              <div class="absolute top-10 right-10 w-72 h-72 bg-gradient-to-br from-indigo-100 to-purple-100 rounded-full blur-3xl opacity-60"></div>
+            </div>
+            <div class="relative w-72 h-72 sm:w-80 sm:h-80 bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-500 rounded-3xl flex items-center justify-center shadow-2xl shadow-indigo-200 transform rotate-3 hover:rotate-0 transition-transform duration-500 p-8">
+              <span class="text-7xl drop-shadow-2xl select-none">🧰</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="tools" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">80 Tools</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            Everything You Need in
+            <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">One Place</span>
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Eight categories covering code, text, converters, security, network, design, everyday tools, and system settings.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-2xl p-6 border border-indigo-100 shadow-md">
+            <div class="text-2xl mb-3">🛠️</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Code & Data</h3>
+            <p class="text-xs text-slate-500 mb-3">22 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">QR Code</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">JSON</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">UUID</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Base64</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Hash</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Regex</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">SQL</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">SVG</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">YAML</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">CSV</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">+12 more</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100 shadow-md">
+            <div class="text-2xl mb-3">🔤</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Text Tools</h3>
+            <p class="text-xs text-slate-500 mb-3">8 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Case</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Diff</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Markdown</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Lorem</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">TTS</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Morse</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">+2 more</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-6 border border-amber-100 shadow-md">
+            <div class="text-2xl mb-3">↔️</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Converters</h3>
+            <p class="text-xs text-slate-500 mb-3">5 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Currency</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Temperature</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Data Size</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Time</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">EMI</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-6 border border-red-100 shadow-md">
+            <div class="text-2xl mb-3">🔒</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Security</h3>
+            <p class="text-xs text-slate-500 mb-3">7 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">JWT</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">QR Scan</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Hash</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">RSA</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Encrypt</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">+2 more</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-sky-50 to-cyan-50 rounded-2xl p-6 border border-sky-100 shadow-md">
+            <div class="text-2xl mb-3">🌐</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Network</h3>
+            <p class="text-xs text-slate-500 mb-3">3 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">IP Info</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Browser Info</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Link Preview</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-2xl p-6 border border-pink-100 shadow-md">
+            <div class="text-2xl mb-3">🎨</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Design</h3>
+            <p class="text-xs text-slate-500 mb-3">11 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">OCR</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Palette</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Gradient</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Shadow</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Compress</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">+6 more</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-violet-50 to-fuchsia-50 rounded-2xl p-6 border border-violet-100 shadow-md">
+            <div class="text-2xl mb-3">📌</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">Everyday</h3>
+            <p class="text-xs text-slate-500 mb-3">23 tools</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Clock</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Pomodoro</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Notes</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Typing</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Dice</span>
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">+18 more</span>
+            </div>
+          </div>
+
+          <div class="bg-gradient-to-br from-slate-50 to-gray-100 rounded-2xl p-6 border border-slate-200 shadow-md">
+            <div class="text-2xl mb-3">⚙️</div>
+            <h3 class="text-lg font-bold text-slate-900 mb-1">System</h3>
+            <p class="text-xs text-slate-500 mb-3">1 tool</p>
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 bg-white/80 rounded-md text-[10px] text-slate-600">Settings</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+          <span class="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">Why Doda Toolkit</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            What Makes It
+            <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Different</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">100% Local</h3>
+            <p class="text-sm text-slate-600">Every utility runs entirely in your browser. No data is ever sent to any server. Your privacy is built in.</p>
+          </div>
+
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Cross-Platform</h3>
+            <p class="text-sm text-slate-600">Electron desktop app for Linux, Windows, and macOS. Also works in any browser via dev mode. Same experience everywhere.</p>
+          </div>
+
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-pink-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Fast & Lightweight</h3>
+            <p class="text-sm text-slate-600">Lazy-loaded code splitting — each utility loads only when you click it. Zero unnecessary downloads.</p>
+          </div>
+
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-indigo-400 to-indigo-500 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Beautiful UI</h3>
+            <p class="text-sm text-slate-600">Glassmorphism design with gradient accents, smooth animations, dark/light/system theme. Emoji icons — zero bundle cost.</p>
+          </div>
+
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-purple-400 to-purple-500 rounded-xl flex items-center justify-center shadow-lg shadow-purple-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Keyboard-First</h3>
+            <p class="text-sm text-slate-600">⌘K search palette with keyboard navigation, collapsible sidebar, favorites, recents, and press ? for the full shortcut reference.</p>
+          </div>
+
+          <div class="feat-card bg-white rounded-2xl p-6 shadow-md border border-slate-100 hover:shadow-xl">
+            <div class="w-12 h-12 bg-gradient-to-br from-pink-400 to-pink-500 rounded-xl flex items-center justify-center shadow-lg shadow-pink-100 mb-4">
+              <svg class="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Open Source</h3>
+            <p class="text-sm text-slate-600">Fully open source on GitHub. MIT licensed. Built with React, TypeScript, Tailwind, and Electron.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">Tech Stack</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            Built With
+            <span class="bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">Modern Tools</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">⚛️</div>
+            <div class="font-semibold text-slate-900">React 18 + TypeScript</div>
+            <div class="text-xs text-slate-500 mt-1">Component-based UI with strict typing</div>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">⚡</div>
+            <div class="font-semibold text-slate-900">Vite + Tailwind</div>
+            <div class="text-xs text-slate-500 mt-1">Instant HMR, utility-first CSS</div>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">🖥️</div>
+            <div class="font-semibold text-slate-900">Electron</div>
+            <div class="text-xs text-slate-500 mt-1">Cross-platform desktop shell</div>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">🎬</div>
+            <div class="font-semibold text-slate-900">Framer Motion</div>
+            <div class="text-xs text-slate-500 mt-1">Smooth animations and transitions</div>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">📦</div>
+            <div class="font-semibold text-slate-900">Code Splitting</div>
+            <div class="text-xs text-slate-500 mt-1">Each utility is its own async chunk</div>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100 text-center">
+            <div class="text-3xl mb-2">🔍</div>
+            <div class="font-semibold text-slate-900">100+ Libraries</div>
+            <div class="text-xs text-slate-500 mt-1">OCR, QR, TTS, SQL, YAML, and more</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">⌨️ Shortcuts</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            Keyboard
+            <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">Shortcuts</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">⌘K</kbd>
+            <span class="text-sm text-slate-600">Open search palette</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">⌘B</kbd>
+            <span class="text-sm text-slate-600">Toggle sidebar</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">?</kbd>
+            <span class="text-sm text-slate-600">Shortcut reference</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">↑</kbd>
+            <span class="text-sm text-slate-600">Navigate results up</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">↓</kbd>
+            <span class="text-sm text-slate-600">Navigate results down</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">Enter</kbd>
+            <span class="text-sm text-slate-600">Open selected utility</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">⌘,</kbd>
+            <span class="text-sm text-slate-600">Open Settings</span>
+          </div>
+          <div class="bg-white rounded-xl px-5 py-3 shadow-sm border border-slate-100 flex items-center gap-3">
+            <kbd class="inline-flex items-center justify-center min-w-[2.5rem] h-7 px-2 bg-slate-100 border border-slate-200 rounded text-xs font-mono font-bold text-slate-700">Esc</kbd>
+            <span class="text-sm text-slate-600">Close search / modal</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download" class="py-20 bg-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">📥 Download</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            Get Doda Toolkit
+            <span class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent">v1.0</span>
+          </h2>
+          <p class="text-lg text-slate-600 max-w-2xl mx-auto">
+            Available for Linux, Windows, and macOS. Fully open source — no ads, no tracking, no subscriptions.
+          </p>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="text-4xl mb-3">🐧</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Linux</h3>
+            <p class="text-xs text-slate-500 mb-4">Debian/Ubuntu · AppImage</p>
+            <div class="mt-auto space-y-2">
+              <a href="https://github.com/dodatechcom/dodatoolkit/releases/download/v1.0/doda-toolkit_1.0.0_amd64.deb" class="block w-full text-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200">⬇ Download .deb</a>
+              <a href="https://github.com/dodatechcom/dodatoolkit/releases/download/v1.0/DodaToolkit-1.0.0-x86_64.AppImage" class="block w-full text-center border-2 border-slate-200 hover:border-slate-300 text-slate-700 rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200">⬇ Download AppImage</a>
+              <p class="text-xs text-slate-400 text-center">SHA256: <a href="https://github.com/dodatechcom/dodatoolkit/releases/tag/v1.0" class="text-indigo-600 hover:text-indigo-700 underline">Verify on GitHub</a></p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="text-4xl mb-3">🪟</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">Windows</h3>
+            <p class="text-xs text-slate-500 mb-4">Windows 10 / 11 (64-bit)</p>
+            <div class="mt-auto space-y-2">
+              <a href="https://github.com/dodatechcom/dodatoolkit/releases/download/v1.0/doda-toolkit-Setup-1.0.0.exe" class="block w-full text-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200">⬇ Download Installer</a>
+              <p class="text-xs text-slate-400 text-center">NSIS installer · SHA256 verified</p>
+            </div>
+          </div>
+
+          <div class="bg-white rounded-2xl p-6 shadow-md border border-slate-200 hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col">
+            <div class="text-4xl mb-3">🍎</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-1">macOS</h3>
+            <p class="text-xs text-slate-500 mb-4">Intel &amp; Apple Silicon</p>
+            <div class="mt-auto space-y-2">
+              <a href="https://github.com/dodatechcom/dodatoolkit/releases/download/v1.0/DodaToolkit-1.0.0.dmg" class="block w-full text-center bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white shadow-lg rounded-xl px-4 py-3 text-sm font-semibold transition-all duration-200">⬇ Download DMG</a>
+              <p class="text-xs text-slate-400 text-center">macOS 12+ · Universal</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-8 text-center">
+          <p class="text-sm text-slate-500">
+            <span class="font-semibold">All releases:</span>
+            <a href="https://github.com/dodatechcom/dodatoolkit/releases" class="text-indigo-600 hover:text-indigo-700 underline">github.com/dodatechcom/dodatoolkit/releases</a>
+            &middot; Fully open source on
+            <a href="https://github.com/dodatechcom/dodatoolkit" class="text-indigo-600 hover:text-indigo-700 underline">GitHub</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="py-20 bg-gradient-to-br from-slate-50 to-white">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-gradient-to-r from-cyan-50 to-teal-50 text-cyan-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">⚙️ Requirements</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">
+            System
+            <span class="bg-gradient-to-r from-cyan-500 to-teal-500 bg-clip-text text-transparent">Requirements</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100">
+            <div class="text-3xl mb-3">🐧</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Linux</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>Ubuntu 20.04+ / Debian 11+</li>
+              <li>Other distros via AppImage</li>
+              <li>x86_64 (amd64) architecture</li>
+              <li>~256 MB RAM</li>
+            </ul>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100">
+            <div class="text-3xl mb-3">🪟</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">Windows</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>Windows 10 / 11 (64-bit)</li>
+              <li>Windows 8.1 (may work)</li>
+              <li>~256 MB RAM</li>
+            </ul>
+          </div>
+          <div class="bg-gradient-to-br from-slate-50 to-white rounded-2xl p-6 shadow-md border border-slate-100">
+            <div class="text-3xl mb-3">🍎</div>
+            <h3 class="text-xl font-bold text-slate-900 mb-2">macOS</h3>
+            <ul class="space-y-2 text-sm text-slate-600">
+              <li>macOS 12 Monterey+</li>
+              <li>Intel &amp; Apple Silicon</li>
+              <li>~256 MB RAM</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-8 bg-indigo-50 border border-indigo-200 rounded-xl px-6 py-5 text-center">
+          <p class="text-indigo-800 font-medium">Also runs in any browser via <code class="bg-indigo-100 px-2 py-0.5 rounded text-sm font-mono">npm run dev</code> — no install needed for the web version.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="py-20 bg-white">
+      <div class="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+          <span class="inline-block bg-gradient-to-r from-indigo-50 to-purple-50 text-indigo-600 text-sm font-semibold px-4 py-2 rounded-full mb-4">FAQ</span>
+          <h2 class="text-3xl sm:text-4xl font-bold text-slate-900 mb-4">Frequently Asked Questions</h2>
+        </div>
+
+        <div class="space-y-0 divide-y divide-slate-200 bg-white rounded-2xl shadow-md border border-slate-100 px-6">
+
+          <div class="py-5 open">
+            <button onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('hidden')" class="flex justify-between items-center w-full text-left font-semibold text-slate-900 hover:text-indigo-600 transition-colors">
+              Does it work offline?
+              <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mt-2 text-sm text-slate-600 pr-8">Most utilities work fully offline. A few (IP Info, Currency Converter, Link Preview) need internet for live data but gracefully fall back to cached results.</div>
+          </div>
+
+          <div class="py-5">
+            <button onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('hidden')" class="flex justify-between items-center w-full text-left font-semibold text-slate-900 hover:text-indigo-600 transition-colors">
+              Is my data sent anywhere?
+              <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mt-2 text-sm text-slate-600 pr-8 hidden">No. Everything runs locally in your browser. Preferences are stored in localStorage only. Nothing is sent to any server.</div>
+          </div>
+
+          <div class="py-5">
+            <button onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('hidden')" class="flex justify-between items-center w-full text-left font-semibold text-slate-900 hover:text-indigo-600 transition-colors">
+              Can I add my own tools?
+              <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mt-2 text-sm text-slate-600 pr-8 hidden">Yes. Create a folder in <code class="bg-slate-100 px-1 rounded text-xs font-mono">src/components/utilities/&lt;name&gt;/</code> with a component, then add one entry to <code class="bg-slate-100 px-1 rounded text-xs font-mono">src/registry/utilities.ts</code>. That's it.</div>
+          </div>
+
+          <div class="py-5">
+            <button onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('hidden')" class="flex justify-between items-center w-full text-left font-semibold text-slate-900 hover:text-indigo-600 transition-colors">
+              How do I build from source?
+              <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mt-2 text-sm text-slate-600 pr-8 hidden"><code class="bg-slate-100 px-1 rounded text-xs font-mono">npm install && npm run dev</code> runs in your browser. <code class="bg-slate-100 px-1 rounded text-xs font-mono">npm run electron:build</code> packages the desktop installers.</div>
+          </div>
+
+          <div class="py-5">
+            <button onclick="this.parentElement.classList.toggle('open');this.nextElementSibling.classList.toggle('hidden')" class="flex justify-between items-center w-full text-left font-semibold text-slate-900 hover:text-indigo-600 transition-colors">
+              Is it free?
+              <svg class="w-4 h-4 text-slate-400 flex-shrink-0 transition-transform open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+            </button>
+            <div class="mt-2 text-sm text-slate-600 pr-8 hidden">Yes. Completely free and open source under the MIT license. No ads, no tracking, no premium tiers.</div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="bg-slate-900 text-slate-400 py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid md:grid-cols-4 gap-8">
+        <div>
+          <div class="flex items-center gap-2 mb-4">
+            <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+              <svg class="w-5 h-5 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <span class="text-lg font-bold text-white">DodaTech</span>
+          </div>
+          <p class="text-sm">Open source software for a better digital world.</p>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm">Software</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/software/dodabrowser" class="hover:text-white transition-colors">Doda Browser</a></li>
+            <li><a href="/software/dodamediaplayer" class="hover:text-white transition-colors">Doda Media Player</a></li>
+            <li><a href="/software/dodazip" class="hover:text-white transition-colors">DodaZIP</a></li>
+            <li><a href="/software/dodatoolkit" class="hover:text-white transition-colors">Doda Toolkit</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm">Links</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="https://docs.dodatech.com" class="hover:text-white transition-colors">Documentation</a></li>
+            <li><a href="https://github.com/dodatechcom" class="hover:text-white transition-colors">GitHub</a></li>
+            <li><a href="/contact" class="hover:text-white transition-colors">Contact</a></li>
+            <li><a href="/donate" class="hover:text-white transition-colors">Donate</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="text-white font-semibold mb-3 text-sm">Legal</h4>
+          <ul class="space-y-2 text-sm">
+            <li><a href="/privacy" class="hover:text-white transition-colors">Privacy Policy</a></li>
+            <li><a href="/terms" class="hover:text-white transition-colors">Terms of Service</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="border-t border-slate-800 mt-8 pt-8 text-center text-sm">
+        <p>&copy; 2026 DodaTech. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

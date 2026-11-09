@@ -185,16 +185,24 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
 
       <div className="border-t border-border">
         <div className="flex border-b border-border">
-          <button onClick={() => window.electronAPI?.openExternal('https://docs.dodatech.com') || window.open('https://docs.dodatech.com', '_blank')}
-            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors">
+          <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com/docs/dodatoolkit/') || window.open('https://dodatech.com/docs/dodatoolkit/', '_blank')}
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors"
+            title="Documentation & Guides">
             🆘 Help
           </button>
+          <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com/software/dodatoolkit/#download') || window.open('https://dodatech.com/software/dodatoolkit/#download', '_blank')}
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border"
+            title="Download latest version">
+            🔄 Update
+          </button>
           <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com/donate/') || window.open('https://dodatech.com/donate/', '_blank')}
-            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border"
+            title="Support this project">
             💝 Donate
           </button>
           <button onClick={() => setAboutOpen(o => !o)}
-            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border">
+            className="flex-1 flex items-center justify-center gap-1 py-2 text-[10px] text-muted-foreground hover:text-foreground hover:bg-accent/50 transition-colors border-l border-border"
+            title="About Doda Toolkit">
             ℹ️ About
           </button>
         </div>
@@ -213,14 +221,22 @@ export function Sidebar({ activeUtilityId, onSelectUtility }: SidebarProps) {
                 exit={{ scale: 0.85, opacity: 0, y: 20 }}
                 transition={{ type: 'spring', stiffness: 300, damping: 25 }}
                 onClick={e => e.stopPropagation()}
-                className="relative w-full max-w-sm mx-4 p-6 rounded-2xl bg-card border border-border shadow-2xl space-y-2.5"
+                className="relative w-full max-w-sm mx-4 p-6 rounded-2xl bg-card border border-border shadow-2xl space-y-3"
               >
                 <button onClick={() => setAboutOpen(false)}
                   className="absolute top-3 right-3 text-muted-foreground hover:text-foreground text-lg leading-none">&times;</button>
                 <p className="text-lg font-semibold text-foreground">🧰 Doda Toolkit v1.0</p>
-                <p className="text-sm text-muted-foreground">80 utilities across 8 groups.</p>
+                <p className="text-sm text-muted-foreground">87 utilities across 8 groups.</p>
                 <p className="text-sm text-muted-foreground">Built with ❤️ by <button onClick={() => window.electronAPI?.openExternal('https://dodatech.com') || window.open('https://dodatech.com', '_blank')} className="text-primary hover:underline inline">DodaTech.com</button></p>
                 <p className="text-sm text-muted-foreground pt-1">All data is processed locally in your browser. Nothing is sent to any server.</p>
+                <div className="pt-2 flex gap-2">
+                  <button
+                    onClick={() => window.electronAPI?.openExternal('https://dodatech.com/software/dodatoolkit/#download') || window.open('https://dodatech.com/software/dodatoolkit/#download', '_blank')}
+                    className="flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl bg-primary text-primary-foreground text-xs font-semibold hover:opacity-90 transition-opacity shadow"
+                  >
+                    🔄 Download Latest Version
+                  </button>
+                </div>
               </motion.div>
             </motion.div>
           )}

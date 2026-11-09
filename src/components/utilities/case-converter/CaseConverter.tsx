@@ -5,19 +5,19 @@ import { Button } from '@/components/ui/button'
 import { Badge } from '@/components/ui/badge'
 import toast from 'react-hot-toast'
 
-function toCamelCase(str: string): string {
+export function toCamelCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
     .replace(/^[A-Z]/, (c) => c.toLowerCase())
 }
 
-function toPascalCase(str: string): string {
+export function toPascalCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]+(.)/g, (_, chr) => chr.toUpperCase())
     .replace(/^[a-z]/, (c) => c.toUpperCase())
 }
 
-function toSnakeCase(str: string): string {
+export function toSnakeCase(str: string): string {
   return str
     .replace(/([A-Z])/g, '_$1')
     .replace(/[^a-zA-Z0-9]+/g, '_')
@@ -25,7 +25,7 @@ function toSnakeCase(str: string): string {
     .toLowerCase()
 }
 
-function toKebabCase(str: string): string {
+export function toKebabCase(str: string): string {
   return str
     .replace(/([A-Z])/g, '-$1')
     .replace(/[^a-zA-Z0-9]+/g, '-')
@@ -33,18 +33,18 @@ function toKebabCase(str: string): string {
     .toLowerCase()
 }
 
-function toTitleCase(str: string): string {
+export function toTitleCase(str: string): string {
   return str
     .replace(/[^a-zA-Z0-9]+/g, ' ')
     .replace(/\b\w/g, (c) => c.toUpperCase())
     .trim()
 }
 
-function toUpperCase(str: string): string {
+export function toUpperCase(str: string): string {
   return str.toUpperCase()
 }
 
-function toLowerCase(str: string): string {
+export function toLowerCase(str: string): string {
   return str.toLowerCase()
 }
 

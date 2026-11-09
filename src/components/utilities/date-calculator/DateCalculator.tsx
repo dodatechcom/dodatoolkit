@@ -13,6 +13,8 @@ export function DateCalculator() {
   const [startDate, setStartDate] = useState('2025-01-01')
   const [addDays, setAddDays] = useState('90')
   const [direction, setDirection] = useState<'add' | 'subtract'>('add')
+  const [birthDate, setBirthDate] = useState('1995-06-15')
+  const [asOfDate, setAsOfDate] = useState(new Date().toISOString().slice(0, 10))
 
   const diff = useMemo(() => {
     const d1 = new Date(date1)
@@ -41,6 +43,34 @@ export function DateCalculator() {
     return d
   }, [startDate, addDays, direction])
 
+  const age = useMemo(() => {
+    const birth = new Date(birthDate)
+    const asOf = new Date(asOfDate)
+    if (isNaN(birth.getTime()) || isNaN(asOf.getTime())) return null
+
+    let years = asOf.getFullYear() - birth.getFullYear()
+    let months = asOf.getMonth() - birth.getMonth()
+    let days = asOf.getDate() - birth.getDate()
+
+    if (days < 0) {
+      months--
+      const prevMonth = new Date(asOf.getFullYear(), asOf.getMonth(), 0)
+      days += prevMonth.getDate()
+    }
+    if (months < 0) {
+      years--
+      months += 12
+    }
+
+    const totalDays = Math.floor((asOf.getTime() - birth.getTime()) / (1000 * 60 * 60 * 24))
+    const totalHours = Math.floor((asOf.getTime() - birth.getTime()) / (1000 * 60 * 60))
+    const nextBirthday = new Date(asOf.getFullYear(), birth.getMonth(), birth.getDate())
+    if (nextBirthday < asOf) nextBirthday.setFullYear(asOf.getFullYear() + 1)
+    const daysUntilNext = Math.ceil((nextBirthday.getTime() - asOf.getTime()) / (1000 * 60 * 60 * 24))
+
+    return { years, months, days, totalDays, totalHours, daysUntilNext }
+  }, [birthDate, asOfDate])
+
   function copy(text: string) {
     navigator.clipboard.writeText(text).catch(() => {})
     toast.success('Copied!')
@@ -52,6 +82,7 @@ export function DateCalculator() {
         <TabsList className="w-full">
           <TabsTrigger value="diff" className="flex-1">📅 Days Between</TabsTrigger>
           <TabsTrigger value="add" className="flex-1">➕ Add / Subtract</TabsTrigger>
+          <TabsTrigger value="age" className="flex-1">🎂 Age Calculator</TabsTrigger>
         </TabsList>
 
         <TabsContent value="diff">
@@ -128,6 +159,47 @@ export function DateCalculator() {
                 >
                   <p className="text-xs opacity-80">Result</p>
                   <p className="text-lg font-bold">{resultDate.toDateString()}</p>
+                </div>
+              )}
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="age">
+          <Card className="glass border-none shadow-xl">
+            <CardContent className="p-6 space-y-4">
+              <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label>Date of Birth</Label>
+                  <Input type="date" value={birthDate} onChange={(e) => setBirthDate(e.target.value)} />
+                </div>
+                <div className="space-y-2">
+                  <Label>As of Date</Label>
+                  <Input type="date" value={asOfDate} onChange={(e) => setAsOfDate(e.target.value)} />
+                </div>
+              </div>
+
+              {age && (
+                <div className="space-y-4">
+                  <div className="text-center p-6 rounded-2xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg">
+                    <p className="text-5xl font-bold">{age.years}</p>
+                    <p className="text-sm opacity-90 mt-1">years, {age.months} months, {age.days} days</p>
+                  </div>
+
+                  <div className="grid grid-cols-3 gap-2">
+                    <div className="p-3 rounded-xl bg-accent/50 text-center">
+                      <p className="text-base font-bold font-mono">{age.totalDays.toLocaleString()}</p>
+                      <p className="text-[11px] text-muted-foreground">Total Days</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-accent/50 text-center">
+                      <p className="text-base font-bold font-mono">{age.totalHours.toLocaleString()}</p>
+                      <p className="text-[11px] text-muted-foreground">Total Hours</p>
+                    </div>
+                    <div className="p-3 rounded-xl bg-accent/50 text-center">
+                      <p className="text-base font-bold font-mono">{age.daysUntilNext}</p>
+                      <p className="text-[11px] text-muted-foreground">Days to Next B-day</p>
+                    </div>
+                  </div>
                 </div>
               )}
             </CardContent>
